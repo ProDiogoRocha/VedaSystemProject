@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "s1tjaJh7vPDTReiMSgCMM3jnk3XYtGw8vDlmqf/cSWygmvY8sMQVws47YOgOoKbVB36Zr4W3hiOyM3qdpD5r0A==",
+  "success": true,
+  "projectFilePath": "C:\\Projetos\\VedaSystemProject\\VedaSystemProject.Application\\VedaSystemProject.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\prodi\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.0.0\\microsoft.extensions.dependencyinjection.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\microsoft.extensions.options\\3.0.0\\microsoft.extensions.options.3.0.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

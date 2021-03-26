@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "VedaSystemProject.Domain/1.0.0": {
+        "runtime": {
+          "VedaSystemProject.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VedaSystemProject.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
