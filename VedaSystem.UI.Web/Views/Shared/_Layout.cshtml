@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VedaSystem.UI.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VedaSystem.UI.Web</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - VedaSystem.UI.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    @*<script>
+        $(document).ready(function () {
+            var vetorDias = $('.fc-col-header-cell-cushion');
+
+            vetorDias.map((index) => {
+                switch (vetorDias[index].text) {
+                    case 'Sun':
+                        vetorDias[index].text = 'Dom';
+                        break;
+                    case 'Mon':
+                        vetorDias[index].text = 'Seg';
+                        break;
+                    case 'Tue':
+                        vetorDias[index].text = 'Ter'
+                        break;
+                    case 'Wed':
+                        vetorDias[index].text = 'Qua'
+                        break;
+                    case 'Thu':
+                        vetorDias[index].text = 'Qui'
+                        break;
+                    case 'Fri':
+                        vetorDias[index].text = 'Sex'
+                        break;
+                    case 'Sat':
+                        vetorDias[index].text = 'Sab'
+                        break;
+                }
+            });
+
+            MudarNomeMes();
+        });
+
+        function MudarNomeMes() {
+            var mes = $('.fc-toolbar-title')[0].innerText.split(' ');
+            $('.fc-toolbar-title')[0].innerText = "";
+
+            switch (mes[0]) {
+                case 'January':
+                    $('.fc-toolbar-title')[0].innerText = 'Janeiro ' + mes[1]
+                    break;
+                case 'February':
+                    $('.fc-toolbar-title')[0].innerText = 'Fevereiro ' + mes[1]
+                    break;
+                case 'March':
+                    $('.fc-toolbar-title')[0].innerText = 'Março ' + mes[1]
+                    break;
+                case 'April':
+                    $('.fc-toolbar-title')[0].innerText = 'Abril ' + mes[1]
+                    break;
+                case 'May':
+                    $('.fc-toolbar-title')[0].innerText = 'Maio ' + mes[1]
+                    break;
+                case 'June':
+                    $('.fc-toolbar-title')[0].innerText = 'Junho ' + mes[1]
+                    break;
+                case 'July':
+                    $('.fc-toolbar-title')[0].innerText = 'Julho ' + mes[1]
+                    break;
+                case 'August':
+                    $('.fc-toolbar-title')[0].innerText = 'Agosto ' + mes[1]
+                    break;
+                case 'September':
+                    $('.fc-toolbar-title')[0].innerText = 'Setembro ' + mes[1]
+                    break;
+                case 'October':
+                    $('.fc-toolbar-title')[0].innerText = 'Outubro ' + mes[1]
+                    break;
+                case 'November':
+                    $('.fc-toolbar-title')[0].innerText = 'Novembro ' + mes[1]
+                    break;
+                case 'December ':
+                    $('.fc-toolbar-title')[0].innerText = 'Dezembro' + mes[1]
+                    break;
+            }
+        }
+
+        $(document).ready(
+            $('.fc-next-button').on("click", function () {
+                MudarNomeMes();
+            });
+        );
+    </script>*@
+</body>
+</html>

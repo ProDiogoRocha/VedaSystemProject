@@ -1,0 +1,9 @@
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.csprojAssemblyReference.cache
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.AssemblyInfoInputs.cache
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.AssemblyInfo.cs
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.csproj.CoreCompileInputs.cache
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.RazorAssemblyInfo.cache
+C:\Users\prodi\source\repos\VedaSystem\VedaSystem.UI.Web\obj\Debug\net5.0\VedaSystem.UI.Web.RazorAssemblyInfo.cs

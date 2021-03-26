@@ -1,0 +1,96 @@
+﻿@model IEnumerable<VedaSystem.Domain.Models.Log>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeComputador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controller_Action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Servico_Metodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repositorio_Metodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Informacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObjetoJson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Erro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Excecao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeComputador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Controller_Action)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Servico_Metodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Repositorio_Metodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Informacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObjetoJson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Erro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Excecao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

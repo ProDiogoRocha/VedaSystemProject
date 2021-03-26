@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VedaSystem.Application.ViewModels.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="col-sm-4 ">
+    <label class="label">Buscar por nome</label>
+    <input id="GetByName" class="form-control" onkeyup="GetByName()" />
+</div>
+</br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeDeUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoUsuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tableBody-usuarios">
+        @await Html.PartialAsync("_List", Model)
+    </tbody>
+</table>
+<script>
+   function GetByName() {
+        let campoBusca = $("#GetByName").val();
+        $.ajax({
+            url: '@Url.Action("GetByName", "Usuario")',
+            type: "GET",
+            data: { name: campoBusca, propertyName: "NomeDeUsuario", partialName: "_List" },
+            success: function (data) {
+                var retorno = data;
+                if (retorno.view.result === undefined) {
+                    $("#tableBody-usuarios").html("");
+                } else {
+                    $("#tableBody-usuarios").html(retorno.view.result);
+                }
+            },
+            error: function (result) {
+            }
+        });
+    }
+
+</script>

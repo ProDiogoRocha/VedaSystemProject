@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1715: Os identificadores devem ter o prefixo correto
+dotnet_diagnostic.CA1715.severity = none

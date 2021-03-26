@@ -1,0 +1,85 @@
+﻿@model VedaSystem.Domain.Models.Log
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Log</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <input asp-for="IdUsuario" class="form-control" />
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeUsuario" class="control-label"></label>
+                <input asp-for="NomeUsuario" class="form-control" />
+                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeComputador" class="control-label"></label>
+                <input asp-for="NomeComputador" class="form-control" />
+                <span asp-validation-for="NomeComputador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Controller_Action" class="control-label"></label>
+                <input asp-for="Controller_Action" class="form-control" />
+                <span asp-validation-for="Controller_Action" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Servico_Metodo" class="control-label"></label>
+                <input asp-for="Servico_Metodo" class="form-control" />
+                <span asp-validation-for="Servico_Metodo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Repositorio_Metodo" class="control-label"></label>
+                <input asp-for="Repositorio_Metodo" class="form-control" />
+                <span asp-validation-for="Repositorio_Metodo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Informacao" class="control-label"></label>
+                <input asp-for="Informacao" class="form-control" />
+                <span asp-validation-for="Informacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObjetoJson" class="control-label"></label>
+                <input asp-for="ObjetoJson" class="form-control" />
+                <span asp-validation-for="ObjetoJson" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Erro" class="control-label"></label>
+                <input asp-for="Erro" class="form-control" />
+                <span asp-validation-for="Erro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Excecao" class="control-label"></label>
+                <input asp-for="Excecao" class="form-control" />
+                <span asp-validation-for="Excecao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
