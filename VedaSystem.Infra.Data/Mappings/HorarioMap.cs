@@ -28,6 +28,11 @@ namespace VedaSystem.Infra.Data.Mappings
 
             builder.Property(h => h.Ano)
                    .IsRequired();
+
+            builder.Property(h => h.DuracaoConsultaEmMinutos)
+                    .IsRequired();
+
+            builder.Property(h => h.Intervalo);
         }
     }
 }

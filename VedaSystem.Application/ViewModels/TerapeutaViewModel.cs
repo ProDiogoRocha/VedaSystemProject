@@ -7,6 +7,7 @@ using VedaSystem.Domain.Models;
 
 namespace VedaSystem.Application.ViewModels
 {
+    [Serializable]
     public class TerapeutaViewModel
     {
         [Key]
@@ -99,21 +100,21 @@ namespace VedaSystem.Application.ViewModels
         public string Observacoes { get; set; }
 
         public TipoPessoa TipoPessoa { get; set; }
-        public DateTime DataCadastro { get; set; }
+        public DateTime? DataCadastro { get; set; }
 
         [Required(ErrorMessage = "O preenchimento do campo Data de nascimento é obrigatório", AllowEmptyStrings = false)]
         [Display(Name = "Data de nascimento")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
         
         
         [Required]
         [DataType(DataType.Upload)]
         [Display(Name = "Imagem ou Logo")]
-        public IFormFile ImagemUpload { get; set; }
+        public IFormFile? ImagemUpload { get; set; }
 
-        public byte[] Logo { get; set; }
+        public byte[]? Logo { get; set; }
 
         [Display(Name = "Qtd Terapias")]
         public IList<Terapia> Terapias { get; set; }

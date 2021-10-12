@@ -91,6 +91,65 @@
           }
         }
       },
+      "MailKit/2.12.0": {
+        "dependencies": {
+          "MimeKit": "2.12.0"
+        },
+        "runtime": {
+          "lib/net50/MailKit.dll": {
+            "assemblyVersion": "2.12.0.0",
+            "fileVersion": "2.12.0.0"
+          }
+        }
+      },
+      "MailSystem.Net-trunk/2.1.41": {
+        "runtime": {
+          "lib/net40/ActiveUp.Net.Common.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Dns.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Groupware.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Imap4.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Mail.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Nntp.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.OpenPGP.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Pop3.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.Smtp.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.WhoIs.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          },
+          "lib/net40/ActiveUp.Net.dll": {
+            "assemblyVersion": "2.1.41.0",
+            "fileVersion": "2.1.41.0"
+          }
+        }
+      },
       "Microsoft.AspNet.Mvc/5.2.7": {
         "dependencies": {
           "Microsoft.AspNet.Razor": "3.2.7",
@@ -282,7 +341,7 @@
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.Extensions.FileProviders.Abstractions": "5.0.0",
           "Microsoft.Net.Http.Headers": "2.2.0",
-          "System.Buffers": "4.5.0"
+          "System.Buffers": "4.5.1"
         }
       },
       "Microsoft.AspNetCore.Http.Features/5.0.3": {
@@ -674,7 +733,7 @@
           "System.Collections": "4.3.0",
           "System.IO": "4.3.0",
           "System.IO.FileSystem": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.4.0",
           "System.Runtime.Extensions": "4.3.0",
           "System.Runtime.InteropServices": "4.3.0",
           "System.Runtime.InteropServices.RuntimeInformation": "4.3.0"
@@ -978,7 +1037,7 @@
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "5.6.0",
           "Newtonsoft.Json": "11.0.2",
-          "System.Security.Cryptography.Cng": "4.5.0"
+          "System.Security.Cryptography.Cng": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
@@ -990,7 +1049,7 @@
       "Microsoft.Net.Http.Headers/2.2.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.0",
-          "System.Buffers": "4.5.0"
+          "System.Buffers": "4.5.1"
         }
       },
       "Microsoft.NETCore.Platforms/5.0.0": {},
@@ -1019,6 +1078,21 @@
       "Microsoft.Win32.SystemEvents/5.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "MimeKit/2.12.0": {
+        "dependencies": {
+          "Portable.BouncyCastle": "1.8.10",
+          "System.Buffers": "4.5.1",
+          "System.Reflection.TypeExtensions": "4.4.0",
+          "System.Security.Cryptography.Pkcs": "4.7.0",
+          "System.Text.Encoding.CodePages": "4.7.0"
+        },
+        "runtime": {
+          "lib/net50/MimeKit.dll": {
+            "assemblyVersion": "2.12.0.0",
+            "fileVersion": "2.12.0.0"
+          }
         }
       },
       "NETStandard.Library/1.6.1": {
@@ -1117,6 +1191,14 @@
           }
         }
       },
+      "Portable.BouncyCastle/1.8.10": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.10.0",
+            "fileVersion": "1.8.10.1"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -1199,7 +1281,6 @@
           }
         }
       },
-      "Selenium.Chrome.WebDriver/85.0.0": {},
       "Selenium.WebDriver/3.141.0": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2"
@@ -1211,12 +1292,13 @@
           }
         }
       },
+      "Selenium.WebDriver.ChromeDriver/91.0.4472.1900": {},
       "System.AppContext/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Buffers/4.5.0": {},
+      "System.Buffers/4.5.1": {},
       "System.CodeDom/4.7.0": {
         "runtime": {
           "lib/netstandard2.0/System.CodeDom.dll": {
@@ -1293,7 +1375,7 @@
           "System.Reflection": "4.3.0",
           "System.Reflection.Extensions": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.4.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
@@ -1434,7 +1516,7 @@
           "System.Reflection.Emit": "4.7.0",
           "System.Reflection.Emit.ILGeneration": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.4.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
@@ -1491,7 +1573,7 @@
       "System.IO.Compression/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
-          "System.Buffers": "4.5.0",
+          "System.Buffers": "4.5.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
           "System.IO": "4.3.0",
@@ -1509,7 +1591,7 @@
       },
       "System.IO.Compression.ZipFile/4.3.0": {
         "dependencies": {
-          "System.Buffers": "4.5.0",
+          "System.Buffers": "4.5.1",
           "System.IO": "4.3.0",
           "System.IO.Compression": "4.3.0",
           "System.IO.FileSystem": "4.3.0",
@@ -1568,7 +1650,7 @@
           "System.Reflection.Emit.Lightweight": "4.3.0",
           "System.Reflection.Extensions": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.4.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
@@ -1663,7 +1745,7 @@
           "System.Reflection.Emit.Lightweight": "4.3.0",
           "System.Reflection.Extensions": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.4.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
@@ -1745,12 +1827,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Reflection.TypeExtensions/4.3.0": {
-        "dependencies": {
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0"
-        }
-      },
+      "System.Reflection.TypeExtensions/4.4.0": {},
       "System.Resources.ResourceManager/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
@@ -1874,7 +1951,7 @@
           "runtime.native.System.Security.Cryptography.OpenSsl": "4.3.0"
         }
       },
-      "System.Security.Cryptography.Cng/4.5.0": {},
+      "System.Security.Cryptography.Cng/4.7.0": {},
       "System.Security.Cryptography.Csp/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
@@ -1925,9 +2002,9 @@
           "runtime.native.System.Security.Cryptography.OpenSsl": "4.3.0"
         }
       },
-      "System.Security.Cryptography.Pkcs/4.5.0": {
+      "System.Security.Cryptography.Pkcs/4.7.0": {
         "dependencies": {
-          "System.Security.Cryptography.Cng": "4.5.0"
+          "System.Security.Cryptography.Cng": "4.7.0"
         }
       },
       "System.Security.Cryptography.Primitives/4.3.0": {
@@ -1974,7 +2051,7 @@
           "System.Runtime.InteropServices": "4.3.0",
           "System.Runtime.Numerics": "4.3.0",
           "System.Security.Cryptography.Algorithms": "4.3.0",
-          "System.Security.Cryptography.Cng": "4.5.0",
+          "System.Security.Cryptography.Cng": "4.7.0",
           "System.Security.Cryptography.Csp": "4.3.0",
           "System.Security.Cryptography.Encoding": "4.3.0",
           "System.Security.Cryptography.OpenSsl": "4.3.0",
@@ -1988,7 +2065,7 @@
       },
       "System.Security.Cryptography.Xml/4.5.0": {
         "dependencies": {
-          "System.Security.Cryptography.Pkcs": "4.5.0",
+          "System.Security.Cryptography.Pkcs": "4.7.0",
           "System.Security.Permissions": "4.7.0"
         }
       },
@@ -2147,7 +2224,7 @@
           "System.Reflection.Emit.ILGeneration": "4.3.0",
           "System.Reflection.Extensions": "4.3.0",
           "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.4.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
@@ -2183,12 +2260,21 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "UAParser/3.1.47": {
+        "runtime": {
+          "lib/netcoreapp2.0/UAParser.dll": {
+            "assemblyVersion": "3.1.47.0",
+            "fileVersion": "3.1.47.0"
+          }
+        }
+      },
       "VedaSystem.Domain/1.0.0": {
         "dependencies": {
           "Microsoft.AspNet.Mvc": "5.2.7",
           "Microsoft.AspNet.WebHelpers": "3.2.7",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.4",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "MimeKit": "2.12.0",
           "OpenPop.NET": "2.0.6.1120",
           "Selenium.WebDriver": "3.141.0"
         },
@@ -2200,6 +2286,8 @@
         "dependencies": {
           "Dapper": "2.0.78",
           "EntityFramework": "6.4.4",
+          "MailKit": "2.12.0",
+          "MailSystem.Net-trunk": "2.1.41",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.4",
           "Microsoft.AspNetCore.Identity.UI": "5.0.4",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
@@ -2207,8 +2295,9 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
           "Microsoft.Extensions.Configuration.UserSecrets": "5.0.0",
           "OpenPop.NET": "2.0.6.1120",
-          "Selenium.Chrome.WebDriver": "85.0.0",
           "Selenium.WebDriver": "3.141.0",
+          "Selenium.WebDriver.ChromeDriver": "91.0.4472.1900",
+          "UAParser": "3.1.47",
           "VedaSystem.Domain": "1.0.0"
         },
         "runtime": {
@@ -2264,6 +2353,20 @@
       "sha512": "sha512-uk2lzFa/0zQSk8im2CX8ROXlqy8YAJUG28b5/G8wa0YNdO6+04bEl3iZCaThkcyNWnnIsHCn5hWR3vZjc6JhmA==",
       "path": "htmlrenderer.pdfsharp/1.5.0.6",
       "hashPath": "htmlrenderer.pdfsharp.1.5.0.6.nupkg.sha512"
+    },
+    "MailKit/2.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YGjG1rHqTiyPZO3J/gWcBI1tOIMmSEALiEjf5i2YCUDkR4F+AEOyx/hNMP/99vPmpB6rxUdh/budN/tb3CcbCw==",
+      "path": "mailkit/2.12.0",
+      "hashPath": "mailkit.2.12.0.nupkg.sha512"
+    },
+    "MailSystem.Net-trunk/2.1.41": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gn12/lhRnWv2ySpqEOg7r48YMMIXp9Cp70G75Xtkz2iphXTzIJt/CkWqL5py3tIchVPTDMb082wZMaFG1NQHpg==",
+      "path": "mailsystem.net-trunk/2.1.41",
+      "hashPath": "mailsystem.net-trunk.2.1.41.nupkg.sha512"
     },
     "Microsoft.AspNet.Mvc/5.2.7": {
       "type": "package",
@@ -2979,6 +3082,13 @@
       "path": "microsoft.win32.systemevents/5.0.0",
       "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
     },
+    "MimeKit/2.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OB0sU/wk/Z0w8JBdtfdSme/trw0J7yWLivz+j/dO8KvfqQICkHL7oZVBRitFTlsTD68U62RNoUzrQ7zEiNtEoA==",
+      "path": "mimekit/2.12.0",
+      "hashPath": "mimekit.2.12.0.nupkg.sha512"
+    },
     "NETStandard.Library/1.6.1": {
       "type": "package",
       "serviceable": true,
@@ -3013,6 +3123,13 @@
       "sha512": "sha512-M8w6e4R+jA1j3ddPCY6jNnb8RG21ZgCr+ENapwaH5NPzNl600f1wOcCPY2hEO+jb0aCGjcMHrWk/K+PC1cw0PQ==",
       "path": "pdfsharp/1.32.3057",
       "hashPath": "pdfsharp.1.32.3057.nupkg.sha512"
+    },
+    "Portable.BouncyCastle/1.8.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XLhjNAwuVB9ynwn11l5K44eyozh8q6gFseTrlnLNttejimglX7+F9+vxh60LPjvA/DAt6fUdS43N3ah8K6eaWg==",
+      "path": "portable.bouncycastle/1.8.10",
+      "hashPath": "portable.bouncycastle.1.8.10.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
@@ -3154,19 +3271,19 @@
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
     },
-    "Selenium.Chrome.WebDriver/85.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-wRg7it2bBMyYtOsarTy0bWtS2fCZI08KGTef2kH381DYpGP+wX8j6f/7ABv1nmrUj5CCVmTeDeYeXS5g00JXSw==",
-      "path": "selenium.chrome.webdriver/85.0.0",
-      "hashPath": "selenium.chrome.webdriver.85.0.0.nupkg.sha512"
-    },
     "Selenium.WebDriver/3.141.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-wPqzXO3f79DzqauTZSzLMKiaBCN0Z2Mv7KvWP+hnV6EL88zh/pJJnFtdIR1X5wa3hsTOpF/bBJs45rz7kArsiA==",
       "path": "selenium.webdriver/3.141.0",
       "hashPath": "selenium.webdriver.3.141.0.nupkg.sha512"
+    },
+    "Selenium.WebDriver.ChromeDriver/91.0.4472.1900": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-H8N5+WEr6o1pEcQpq8pODJwjMeWqxU3zvMZZLBTPjMBI+rJ51OPDeWHCdOLniXo4YrawrnvkHC7luwfMp64UpA==",
+      "path": "selenium.webdriver.chromedriver/91.0.4472.1900",
+      "hashPath": "selenium.webdriver.chromedriver.91.0.4472.1900.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",
@@ -3175,12 +3292,12 @@
       "path": "system.appcontext/4.3.0",
       "hashPath": "system.appcontext.4.3.0.nupkg.sha512"
     },
-    "System.Buffers/4.5.0": {
+    "System.Buffers/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A==",
-      "path": "system.buffers/4.5.0",
-      "hashPath": "system.buffers.4.5.0.nupkg.sha512"
+      "sha512": "sha512-Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
+      "path": "system.buffers/4.5.1",
+      "hashPath": "system.buffers.4.5.1.nupkg.sha512"
     },
     "System.CodeDom/4.7.0": {
       "type": "package",
@@ -3511,12 +3628,12 @@
       "path": "system.reflection.primitives/4.3.0",
       "hashPath": "system.reflection.primitives.4.3.0.nupkg.sha512"
     },
-    "System.Reflection.TypeExtensions/4.3.0": {
+    "System.Reflection.TypeExtensions/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7u6ulLcZbyxB5Gq0nMkQttcdBTx57ibzw+4IOXEfR+sXYQoHvjW5LTLyNr8O22UIMrqYbchJQJnos4eooYzYJA==",
-      "path": "system.reflection.typeextensions/4.3.0",
-      "hashPath": "system.reflection.typeextensions.4.3.0.nupkg.sha512"
+      "sha512": "sha512-dkmh/ySlwnXJp/1qYP9uyKkCK1CXR/REFzl7abHcArxBcV91mY2CgrrzSRA5Z/X4MevJWwXsklGRdR3A7K9zbg==",
+      "path": "system.reflection.typeextensions/4.4.0",
+      "hashPath": "system.reflection.typeextensions.4.4.0.nupkg.sha512"
     },
     "System.Resources.ResourceManager/4.3.0": {
       "type": "package",
@@ -3609,12 +3726,12 @@
       "path": "system.security.cryptography.algorithms/4.3.0",
       "hashPath": "system.security.cryptography.algorithms.4.3.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.Cng/4.5.0": {
+    "System.Security.Cryptography.Cng/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WG3r7EyjUe9CMPFSs6bty5doUqT+q9pbI80hlNzo2SkPkZ4VTuZkGWjpp77JB8+uaL4DFPRdBsAY+DX3dBK92A==",
-      "path": "system.security.cryptography.cng/4.5.0",
-      "hashPath": "system.security.cryptography.cng.4.5.0.nupkg.sha512"
+      "sha512": "sha512-4WQjFuypWtxb/bl/YwEE7LYGn4fgpsikFfBU6xwEm4YBYiRAhXAEJ62lILBu2JJSFbClIAntFTGfDZafn8yZTg==",
+      "path": "system.security.cryptography.cng/4.7.0",
+      "hashPath": "system.security.cryptography.cng.4.7.0.nupkg.sha512"
     },
     "System.Security.Cryptography.Csp/4.3.0": {
       "type": "package",
@@ -3637,12 +3754,12 @@
       "path": "system.security.cryptography.openssl/4.3.0",
       "hashPath": "system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.Pkcs/4.5.0": {
+    "System.Security.Cryptography.Pkcs/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TGQX51gxpY3K3I6LJlE2LAftVlIMqJf0cBGhz68Y89jjk3LJCB6SrwiD+YN1fkqemBvWGs+GjyMJukl6d6goyQ==",
-      "path": "system.security.cryptography.pkcs/4.5.0",
-      "hashPath": "system.security.cryptography.pkcs.4.5.0.nupkg.sha512"
+      "sha512": "sha512-0Srzh6YlhjuMxaqMyeCCdZs22cucaUAG6SKDd3gNHBJmre0VZ71ekzWu9rvLD4YXPetyNdPvV6Qst+8C++9v3Q==",
+      "path": "system.security.cryptography.pkcs/4.7.0",
+      "hashPath": "system.security.cryptography.pkcs.4.7.0.nupkg.sha512"
     },
     "System.Security.Cryptography.Primitives/4.3.0": {
       "type": "package",
@@ -3825,6 +3942,13 @@
       "sha512": "sha512-jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    },
+    "UAParser/3.1.47": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I68Jl/Vs5RQZdz9BbmYtnXgujg0jVd61LhKbyNZOCm9lBxZFGxLbiQo6yFj21VYi7DzPvEvrVOmeC6v41AoLfw==",
+      "path": "uaparser/3.1.47",
+      "hashPath": "uaparser.3.1.47.nupkg.sha512"
     },
     "VedaSystem.Domain/1.0.0": {
       "type": "project",

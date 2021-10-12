@@ -1,0 +1,22 @@
+﻿@model IEnumerable<VedaSystem.Application.ViewModels.MaterialTerapiaViewModel>
+
+
+@foreach (var item in Model)
+{
+    <div id="@item.Id" class="task-item d-flex align-items-center  bgc-h-green-l3 brc-secondary-l3 px-2 listMaterial">
+        @Html.HiddenFor(modelItem => item.Id)
+        <label class="flex-grow-1 mr-3 py-3 col-sm-5" for="task-item-0">
+            <span class="align-middle">
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </span>
+        </label>
+        <label class="flex-grow-1 mr-3 py-3 col-sm-4" for="task-item-0">
+            <input value="@item.Quantidade" text="@item.Quantidade" onkeyup="atualizarQtdMaterialTerapia('@item.Id')" asp-for="@item.Quantidade" type="number" class="align-middle input-sm ml-2 mr-25 col-sm-12" id="_input_@item.Id" />
+        </label>
+        <label class="flex-grow-1 mr-3 py-3 col-sm-1" for="task-item-0">
+            <i class="fa fa-trash text-danger-m1" onclick="removerMaterialTerapia('@item.Id')"></i>
+        </label>
+    </div>
+}
+
+

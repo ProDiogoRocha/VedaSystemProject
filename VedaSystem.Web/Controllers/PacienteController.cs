@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using VedaSystem.Application.Interfaces;
 using VedaSystem.Application.ViewModels;
 using VedaSystem.Domain.Models;
@@ -37,5 +38,36 @@ namespace VedaSystem.Web.Controllers
         {
             return _PartilView("Create", "", null);
         }
+
+        public override IActionResult CreateWithJson(string entity)
+        {
+            try
+            {
+                PacienteViewModel vm = JsonConvert.DeserializeObject<PacienteViewModel>(entity);
+
+                vm.GetType().GetProperty("Id").SetValue(vm, Guid.NewGuid());
+
+                _log.RegistrarLog
+                    (
+                        Informacao: $@"1º Passo | Contexto de Paciente, Iniciando Módulo Create",
+                        Controller_Action: $@"[HttpPost]-Paciente/Create",
+                        ObjetoJson: JsonConvert.SerializeObject(entity)
+                    );
+
+                if (ModelState.IsValid)
+                {
+                    _service.Add(vm);
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception e)
+            {
+                return _PartilView("Create", null, vm);
+            }
+
+            return _PartilView("Create", null, vm);
+        }
+
+
     }
 }

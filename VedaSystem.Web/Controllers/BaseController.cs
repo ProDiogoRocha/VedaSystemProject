@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using VedaSystem.Application.Interfaces;
 using VedaSystem.Application.Utils;
 using VedaSystem.Web.Controllers.Interface;
@@ -23,7 +25,7 @@ namespace VedaSystem.Web.Controllers
         {
             _log = RetornaObjetoLog(logService: logService, NomeDoUsuario: User != null ? User.Identity.Name : null);
             _service = service;
-            _entityName = this.GetType().Name; 
+            _entityName = this.GetType().Name;
         }
 
         private LogApp RetornaObjetoLog(ILogService logService, string NomeDoUsuario = null)
@@ -40,7 +42,7 @@ namespace VedaSystem.Web.Controllers
                     Informacao: $@"1º Passo | Contexto de {_entityName.Replace("Controller", "")}, Iniciando Módulo Create",
                     Controller_Action: $@"[HttpGet]-{_entityName}/Create"
                 );
-            if(vm == null)
+            if (vm == null)
             {
                 return View();
             }
@@ -169,7 +171,7 @@ namespace VedaSystem.Web.Controllers
             {
                 return NotFound();
             }
-            return View(t);
+            return _PartilView("Edit", null, t);
         }
 
         [HttpPost]
@@ -288,6 +290,96 @@ namespace VedaSystem.Web.Controllers
         public bool UsuarioExists(Guid id)
         {
             return _service.GetById(id) != null ? true : false;
+        }
+
+        public virtual IActionResult CreateWithJson(string entity)
+        {
+            try
+            {
+                Vm vm = JsonConvert.DeserializeObject<Vm>(entity);
+
+                vm.GetType().GetProperty("Id").SetValue(vm, Guid.NewGuid());
+
+                _log.RegistrarLog
+                    (
+                        Informacao: $@"1º Passo | Contexto de {_entityName.Replace("Controller", "")}, Iniciando Módulo Create",
+                        Controller_Action: $@"[HttpPost]-{_entityName}/Create",
+                        ObjetoJson: JsonConvert.SerializeObject(entity)
+                    );
+
+                if (ModelState.IsValid)
+                {
+                    _service.Add(vm);
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception e)
+            {
+                return _PartilView("Create", null, vm);
+            }
+
+            return _PartilView("Create", null, vm);
+        }
+
+        public virtual IActionResult EditWithJson(string entity)
+        {
+            Vm vm = JsonConvert.DeserializeObject<Vm>(entity);
+
+            _log.RegistrarLog
+              (
+                  Informacao: $@"1º Passo | Contexto de {_entityName.Replace("Controller", "")}, Iniciando Módulo Edit",
+                  Controller_Action: $@"[HttpPost]-{_entityName}/Edit",
+                  ObjetoJson: JsonConvert.SerializeObject(entity)
+              );
+
+            try
+            {
+                _service.Update(vm);
+
+                _log.RegistrarLog
+              (
+                  Informacao: $@"1º Passo | Contexto de {_entityName.Replace("Controller", "")}, Finalizando Módulo Edit",
+                  Controller_Action: $@"[HttpPost]-{_entityName}/Edit",
+                  ObjetoJson: JsonConvert.SerializeObject(entity)
+              );
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public virtual IActionResult DeleteWithJson(string ids)
+        {
+            List<string> Ids = ids.Split(",").ToList().Where(a => !string.IsNullOrEmpty(a)).Select(a => a).ToList();
+
+            _log.RegistrarLog
+              (
+                  Informacao: $@"1º Passo | Contexto de {_entityName.Replace("Controller", "")}, Iniciando Módulo DeleteWithJson",
+                  Controller_Action: $@"[HttpPost]-{_entityName}/DeleteWithJson",
+                  ObjetoJson: JsonConvert.SerializeObject(ids)
+              );
+
+            try
+            {
+                foreach (var id in Ids)
+                {
+                    vm = _service.GetById(Guid.Parse(id));
+                    _service.Remove(vm) ;
+                }
+
+                _log.RegistrarLog
+              (
+                  Informacao: $@"1º Passo | Contexto de {_entityName.Replace("Controller", "")}, Finalizando Módulo DeleteWithJson",
+                  Controller_Action: $@"[HttpPost]-{_entityName}/DeleteWithJson",
+                  ObjetoJson: JsonConvert.SerializeObject(ids)
+              );
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

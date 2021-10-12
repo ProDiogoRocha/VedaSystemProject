@@ -69,6 +69,15 @@ namespace VedaSystem.Web.Configurations
 
             services.AddDbContext<InfoMailContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<DepoimentoContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<FichaClinicaPacienteContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<QuestionarioPosDiagnosticoContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }

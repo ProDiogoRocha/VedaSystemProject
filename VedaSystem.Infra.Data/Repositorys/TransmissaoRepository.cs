@@ -86,5 +86,23 @@ namespace VedaSystem.Infra.Data.Repositorys
                );
             return transmissoes;
         }
+
+        public override void Update(Transmissao t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Update(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | Transmissao, Entity Update"
+                   , Repositorio_Metodo: $@"Transmissao/Update"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+        }
     }
 }

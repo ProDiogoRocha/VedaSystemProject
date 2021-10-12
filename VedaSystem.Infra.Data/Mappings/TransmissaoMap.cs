@@ -28,6 +28,8 @@ namespace VedaSystem.Infra.Data.Mappings
             builder.Property(t => t.Ativo)
                .IsRequired();
 
+            builder.Property(t => t.IdsDepoimentos);
+
             builder.HasOne(t => t.Terapeuta)
             .WithMany(x => x.Transmissoes)
             .HasForeignKey(t => t.TerapeutaId);

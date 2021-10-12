@@ -1,0 +1,35 @@
+﻿@model IEnumerable<VedaSystem.Application.ViewModels.QuestionarioPosDiagnosticoViewModel>
+
+@foreach (var item in Model)
+{
+    <tr class="d-style bgc-h-default-l4">
+        <td class="td-toggle-details pos-rel">
+            <div class="position-lc h-95 ml-1px border-l-3 brc-purple-m1">
+            </div>
+        </td>
+        <td class="pl-3 pl-md-4 align-middle pos-rel">
+            <input type="checkbox" class="pacientes-check" onclick="showHideBotaoDeletePaciente()" value="@item.Id" />
+            <div class="d-n-collapsed position-lc h-95 ml-1px border-l-3 brc-purple-m1">
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente.Nome)
+        </td>
+        <td class="text-grey">
+            @Html.DisplayFor(modelItem => item.Paciente.DataNascimento)
+        </td>
+        <td class="align-middle">
+            <span class="d-none d-lg-inline">
+                <a data-rel="tooltip" data-action="edit" title="Edit" href="javascript:void(0)" onclick="openEditQuestionarioPosDiagnostico('@item.Id')" class="v-hover">
+                    <i class="fa fa-edit text-blue-m1 text-120"></i>
+                </a>
+            </span>
+            <span class="d-lg-none text-nowrap">
+                <a title="Edit" href="javascript:void(0)" onclick="openEditQuestionarioPosDiagnostico('@item.Id')" class="btn btn-outline-info shadow-sm px-4 btn-bgc-white">
+                    <i class="fa fa-pencil-alt mx-1"></i>
+                    <span class="ml-1 d-md-none">Editar</span>
+                </a>
+            </span>
+        </td>
+    </tr>
+}

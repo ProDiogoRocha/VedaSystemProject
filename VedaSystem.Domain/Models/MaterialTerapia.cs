@@ -10,7 +10,7 @@ namespace VedaSystem.Domain.Models
         public Guid? EstoqueMaterialId { get; set; }
         public Guid? TerapiaId { get; set; }
         public virtual Terapia Terapia { get; set; }
-        public virtual TerapiaPrincipal TerapiaPrincipal { get; set; }
         public int Quantidade { get; set; }
+        public bool Ativo { get; set; } = false;
     }
 }

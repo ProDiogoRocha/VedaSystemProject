@@ -1,67 +1,308 @@
-﻿@model VedaSystem.Domain.Models.Transmissao
+﻿@model VedaSystem.Application.ViewModels.TransmissaoViewModel
+@{ Layout = null;}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <base href="../" />
+    <title>Lead Page - Veda System</title>
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/fortawesome/fontawesome-free/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/fortawesome/fontawesome-free/css/regular.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/fortawesome/fontawesome-free/css/brands.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/fortawesome/fontawesome-free/css/solid.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/aos/dist/aos.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace-font.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace.css">
+    <link rel="icon" type="image/png" href="~/lib/ace-v3.1.1/assets/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/views/pages/landing-page-1/page-style.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace-themes.css">
+</head>
+<body>
+    <div class="body-container">
+        <div class="pos-abs" id="scroll-down"></div>
+        <div class="pos-abs" id="scroll-up"></div>
+        <nav class="navbar navbar-expand-lg navbar-darkblue" id="navbar-dark">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="navbar-toggler btn btn-burger burger-times static collapsed d-flex d-lg-none ml-2" data-toggle="collapse" data-target="#navbarMenu1-dark" aria-controls="navbarMenu1-dark" aria-expanded="false" aria-label="Toggle navbar menu">
+                        <span class="bars text-white"></span>
+                    </button>
+                    <div class="navbar-intro justify-content-xl-between bgc-transparent">
+                        <a class="navbar-brand text-white text-180" href="#">
+                            <i class="fa fa-leaf text-105 text-green-l5 mr-1"></i>
+                            <span>Veda</span>
+                            <span class="text-70">System</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-white d-none" id="navbar-light">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-burger burger-times static navbar-toggler collapsed d-flex d-lg-none ml-2" data-toggle="collapse" data-target="#navbarMenu1-light" aria-controls="navbarMenu1-light" aria-expanded="false" aria-label="Toggle navbar menu">
+                        <span class="bars text-dark-tp3"></span>
+                    </button>
+                    <div class="navbar-intro justify-content-xl-between border-0 w-auto">
+                        <a class="navbar-brand text-dark-tp3 text-180" href="#">
+                            <i class="fa fa-leaf text-105 text-success-m2 mr-1"></i>
+                            <span>Veda</span>
+                            <span class="text-70">System</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="main-container bgc-white">
+            <div role="main" class="main-content">
+                <div class="page-content p-0">
+                    <div id="page-intro-dark" class="page-intro pos-rel navbar-darkblue py-2 pt-xl-4 py-xl-5 text-white">
+                        <div class="d-none d-lg-block">
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.16;width:4px; height:4px; top:30%; left:85%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.2;width:6px; height:6px; top:91%; left:15%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.3;width:8px; height:8px; top:1%; left:87%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.24;width:6px; height:6px; top:0%; left:70%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.17;width:16px; height:16px; top:79%; left:20%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.35;width:6px; height:6px; top:10%; left:0%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.17;width:14px; height:14px; top:16%; left:87%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.15;width:17px; height:17px; top:82%; left:71%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.2;width:12px; height:12px; top:17%; left:92%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.19;width:12px; height:12px; top:44%; left:64%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.27;width:11px; height:11px; top:43%; left:89%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.18;width:9px; height:9px; top:55%; left:25%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.38;width:10px; height:10px; top:5%; left:71%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.11;width:9px; height:9px; top:62%; left:22%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.39;width:18px; height:18px; top:47%; left:3%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.18;width:6px; height:6px; top:12%; left:20%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.34;width:10px; height:10px; top:97%; left:95%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.33;width:7px; height:7px; top:74%; left:87%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.17;width:7px; height:7px; top:84%; left:72%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.14;width:9px; height:9px; top:7%; left:23%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.39;width:15px; height:15px; top:94%; left:91%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.28;width:14px; height:14px; top:60%; left:83%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.3;width:15px; height:15px; top:65%; left:66%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.1;width:7px; height:7px; top:3%; left:95%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.39;width:10px; height:10px; top:20%; left:53%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.14;width:13px; height:13px; top:13%; left:77%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.38;width:13px; height:13px; top:76%; left:13%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.19;width:16px; height:16px; top:9%; left:42%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.21;width:16px; height:16px; top:37%; left:69%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.11;width:4px; height:4px; top:21%; left:95%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.16;width:10px; height:10px; top:76%; left:74%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.16;width:17px; height:17px; top:9%; left:88%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.21;width:15px; height:15px; top:79%; left:131%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.37;width:14px; height:14px; top:94%; left:8%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.2;width:9px; height:9px; top:65%; left:87%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.1;width:16px; height:16px; top:4%; left:93%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.32;width:18px; height:18px; top:36%; left:81%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.35;width:7px; height:7px; top:0%; left:21%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.22;width:11px; height:11px; top:69%; left:82%;"></div>
+                            <div class="pos-abs bgc-white radius-round" style="opacity: 0.32;width:6px; height:6px; top:68%; left:79%;"></div>
+                        </div>
+                        <div class="row container container-plus mx-auto mt-3 mb-5">
+                            <div class="col-12 col-md-7 d-flex flex-column justify-content-center text-center" data-aos="fade-right" data-aos-delay="100">
+                                <h1 class="align-self-center">
+                                    @{
+                                        var vetorTitulo = Model.Titulo.Split();
+                                        string tituloParagrafoUm = "";
+                                        string tituloParagrafoDois = "";
 
-@{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>Details</h1>
-
-<div>
-    <h4>Transmissao</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SubTitulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SubTitulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TextoAntesDoVideo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TextoAntesDoVideo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodigoDeIncorporacaoDeVideo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodigoDeIncorporacaoDeVideo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TextoDepoisDoVideo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TextoDepoisDoVideo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rodape)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rodape)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Terapeuta)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Terapeuta.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                                        for (var i = 0; i < vetorTitulo.Length; i++)
+                                        {
+                                            tituloParagrafoUm = tituloParagrafoUm + vetorTitulo[i] + " ";
+                                            if (i == 1)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        for (var i = 2; i < vetorTitulo.Length; i++)
+                                        {
+                                            tituloParagrafoDois = tituloParagrafoDois + vetorTitulo[i] + " ";
+                                        }
+                                    }
+                                    <span class="text-110 text-yellow-l3">
+                                        @tituloParagrafoUm
+                                    </span>
+                                    <span class="text-90">
+                                        @tituloParagrafoDois
+                                    </span>
+                                </h1>
+                                <h4 class="my-3 text-white text-120">
+                                    @Html.DisplayFor(a => a.SubTitulo)
+                                </h4>
+                            </div>
+                            <div class="col-12 col-md-5 order-first order-md-last mb-4 mb-md-0" data-aos="fade-left">
+                                @Html.DisplayFor(a => a.TextoAntesDoVideo)
+                            </div>
+                        </div>
+                    </div>
+                    <div id="page-intro-light" class="d-none page-intro pos-rel bgc-primary-l4 py-2 pt-xl-4 py-xl-5 overflow-hidden">
+                        <div class="d-none d-lg-block">
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.25;width:17px; height:17px; top:89%; left:90%;"></div>
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.36;width:15px; height:15px; top:20%; left:61%;"></div>
+                            <div class="pos-abs bgc-green radius-round" style="opacity: 0.38;width:10px; height:10px; top:78%; left:93%;"></div>
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.2;width:12px; height:12px; top:13%; left:64%;"></div>
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.37;width:18px; height:18px; top:27%; left:88%;"></div>
+                            <div class="pos-abs bgc-green radius-round" style="opacity: 0.31;width:15px; height:15px; top:32%; left:56%;"></div>
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.34;width:16px; height:16px; top:35%; left:90%;"></div>
+                            <div class="pos-abs bgc-green radius-round" style="opacity: 0.36;width:17px; height:17px; top:76%; left:32%;"></div>
+                            <div class="pos-abs bgc-green radius-round" style="opacity: 0.3;width:14px; height:14px; top:16%; left:91%;"></div>
+                            <div class="pos-abs bgc-green radius-2px" style="opacity: 0.25;width:17px; height:17px; top:67%; left:96%; transform: rotate(355deg)"></div>
+                            <div class="pos-abs bgc-primary radius-2px" style="opacity: 0.39;width:19px; height:19px; top:63%; left:58%; transform: rotate(325deg)"></div>
+                            <div class="pos-abs bgc-orange radius-2px" style="opacity: 0.26;width:23px; height:23px; top:49%; left:58%; transform: rotate(280deg)"></div>
+                            <div class="pos-abs bgc-primary radius-2px" style="opacity: 0.27;width:12px; height:12px; top:57%; left:92%; transform: rotate(354deg)"></div>
+                            <div class="pos-abs brc-primary shape-triangle radius-1" style="opacity: 0.39;border-width:0 17px 27px 17px; top:14%; left:63%; transform: rotate(130deg)"></div>
+                            <div class="pos-abs brc-green shape-triangle radius-1" style="opacity: 0.22;border-width:0 12px 19px 12px; top:15%; left:97%; transform: rotate(346deg)"></div>
+                            <div class="pos-abs brc-orange shape-triangle radius-1" style="opacity: 0.35;border-width:0 19px 30px 19px; top:69%; left:82%; transform: rotate(319deg)"></div>
+                            <div class="pos-abs brc-green shape-triangle radius-1" style="opacity: 0.31;border-width:0 19px 30px 19px; top:6%; left:29%; transform: rotate(59deg);"></div>
+                            <div class="pos-abs brc-orange shape-triangle radius-1" style="opacity: 0.21;border-width:0 14px 22px 14px; top:57%; left:95%; transform: rotate(333deg)"></div>
+                            <div class="pos-abs brc-primary shape-triangle radius-1" style="opacity: 0.24;border-width:0 16px 25px 16px; top:46%; left:50%; transform: rotate(33deg)"></div>
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.29;width:18px; height:18px; top:11%; left:78%;"></div>
+                            <div class="pos-abs bgc-green radius-round" style="opacity: 0.34;width:11px; height:11px; top:10%; left:73%;"></div>
+                            <div class="pos-abs bgc-orange radius-round" style="opacity: 0.31;width:17px; height:17px; top:39%; left:92%;"></div>
+                            <div class="pos-abs bgc-orange radius-2px" style="opacity: 0.38;width:19px; height:19px; top:79%; left:14%; transform: rotate(339deg)"></div>
+                            <div class="pos-abs bgc-primary radius-round" style="opacity: 0.21;width:14px; height:14px; top:85%; left:14%;"></div>
+                            <div class="pos-abs bgc-green radius-round" style="opacity: 0.27;width:11px; height:11px; top:44%; left:15%;"></div>
+                            <div class="pos-abs bgc-primary radius-2px" style="opacity: 0.25;width:13px; height:13px; top:32%; left:13%; transform: rotate(331deg)"></div>
+                        </div>
+                        <div class="row container container-plus mx-auto mt-4 mb-5">
+                            <div class="col-12 col-md-7 d-flex flex-column justify-content-center text-center" data-aos="fade-right" data-aos-delay="100">
+                                <h1 class="align-self-center">
+                                    <span class="text-110 text-yellow-l3">
+                                        @tituloParagrafoUm
+                                    </span>
+                                    <span class="text-90">
+                                        @tituloParagrafoDois
+                                    </span>
+                                </h1>
+                                <h4 class="my-3 text-white text-120">
+                                    @Html.DisplayFor(a => a.SubTitulo)
+                                </h4>
+                            </div>
+                            <div class="col-12 col-md-5 order-first order-md-last mb-4 mb-md-0" data-aos="fade-left">
+                                <img alt="Product Image" src="assets/image/landing/preview.png" class="w-90 1mx-auto" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bgc-white">
+                        <div class="container container-plus pos-rel mt-n5 text-center py-2">
+                            <div class="row mt-n4">
+                                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                                    <div class="row my-4">
+                                        <div class="col-12 col-md-12 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="300">
+                                            <div id="frame-tube" class="feature-item p-0 h-100">
+                                                <iframe width="560" height="315" src="@Html.DisplayFor(a=>a.CodigoDeIncorporacaoDeVideo)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bgc-white">
+                        <div class="container container-plus py-3 pos-rel">
+                            <div data-aos="zoom-in" class="d-none d-lg-block  position-br bgc-purple-l3 mb-5 mr-5 opacity-1 radius-100" style="width: 180px; max-width: 80vw; height: 180px; max-height: 80vw;"></div>
+                            <div data-aos="zoom-in" class="d-none d-lg-block position-lc bgc-success-l3 opacity-1 ml-5 mt-5 radius-1" style="width: 100px; height: 100px;"></div>
+                            <div class="row pt-45 mt-1 mt-lg-5">
+                                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                                    <div class="d-flex flex-column align-items-center flex-md-row align-items-md-start">
+                                        <div class="flex-grow-1 text-dark-tp3 mt-4 mt-md-0 ml-md-2">
+                                            <h3 class="text-primary-d2 my-4 text-center text-md-left" data-aos="fade-up">
+                                                Aumente a produtividade nos atendimentos.
+                                            </h3>
+                                            <div data-aos="fade-up">
+                                                @Html.DisplayFor(a => a.TextoDepoisDoVideo)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bgc-primary-l3">
+                        <div class="container container-plus py-45">
+                            <div class="row">
+                                <div class="col-12 col-lg-9 mx-auto">
+                                    <h3 class="text-center text-dark-m3 mb-4 mb-md-5" data-aos="fade-up">
+                                        Depoimentos
+                                    </h3>
+                                    <div class="row justify-content-center">
+                                        @await Html.PartialAsync("_Depoimentos", Model.Depoimentos.Where(a=>a.Selected == true).Select(a=>a).ToList())
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-darkblue pos-rel">
+                        <div class="container container-plus py-5 px-lg-5">
+                            <div class="row">
+                                <div class="col-lg-6 col-xl-5 mx-auto" data-aos="fade-up">
+                                    <h3 class="text-white text-center text-180 mb-3">
+                                        @Html.DisplayFor(a => a.TituloRodape)
+                                    </h3>
+                                    <p class="text-white-tp1 mb-4">
+                                        @Html.DisplayFor(a => a.Rodape)
+                                    </p>
+                                    <div>
+                                        <div class="px-0 col-12 col-sm-8 col-lg-10 mx-auto radius-round bgc-white input-group">
+                                            <input asp-for="EmailLead" placeholder="Seu melhor endereço de email" type="text" class="form-control form-control-lg radius-round shadow-none border-0 text-dark" />
+                                            <a href="#" class="btn radius-round btn-pink text-600 text-110 px-4 m-3px">
+                                                Enviar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer h-auto">
+                        <div class="footer-inner py-45">
+                            <div class="container container-plus" data-aos="fade">
+                                <div class="row">
+                                    <div class="col-12 col-lg-5">
+                                        <h2 class="text-dark-m3">
+                                            <i class="fa fa-leaf text-85 mr-1 text-success-m1"></i>
+                                            Veda
+                                            <span class="text-75 text-dark-l2">System</span>
+                                        </h2>
+                                        <div class="text-150 mt-2">
+                                            <i class="bgc-blue-m1 p-25 w-6 radius-round fab fa-twitter text-white mx-1"></i>
+                                            <i class="bgc-primary-d2 p-25 w-6 radius-round fab fa-facebook-square text-white mx-1"></i>
+                                            <i class="bgc-purple p-25 w-6 radius-round fab fa-instagram text-white mx-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center py-4 bgc-primary-l4 border-t-1 brc-primary-l3">
+                        <span class="text-dark-m3 text-105">
+                            Copyright &copy; 2021 Veda System
+                        </span>
+                    </div>
+                    <div class="footer-tools">
+                        <a href="#" class="btn-scroll-up btn btn-dark px-25 py-2 text-95 border-2 radius-round mb-2 mr-2">
+                            <i class="fa fa-arrow-up w-2 h-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/ace-v3.1.1/node_modules/jquery/dist/jquery.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/aos/dist/aos.js"></script>
+    <script src="~/lib/ace-v3.1.1/dist/js/ace.js"></script>
+    <script src="~/lib/ace-v3.1.1/app/browser/demo.js"></script>
+    <script src="~/lib/ace-v3.1.1/views/pages/landing-page-1/page-script.js"></script>
+    @*<script>
+        $(document).ready(function ()
+        {
+            $("#frame-tube").html('@Model.CodigoDeIncorporacaoDeVideo');
+        });
+    </script>*@
+</body>
+</html>

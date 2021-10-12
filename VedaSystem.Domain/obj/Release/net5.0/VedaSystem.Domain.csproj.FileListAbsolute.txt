@@ -1,0 +1,12 @@
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Release\net5.0\VedaSystem.Domain.deps.json
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Release\net5.0\VedaSystem.Domain.dll
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Release\net5.0\ref\VedaSystem.Domain.dll
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Release\net5.0\VedaSystem.Domain.pdb
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.csprojAssemblyReference.cache
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.AssemblyInfoInputs.cache
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.AssemblyInfo.cs
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.dll
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\ref\VedaSystem.Domain.dll
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Release\net5.0\VedaSystem.Domain.pdb

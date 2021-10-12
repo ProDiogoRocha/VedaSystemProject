@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using MimeKit;
+using Newtonsoft.Json;
 using OpenPop.Mime;
 using System;
 using System.Collections.Generic;
@@ -22,6 +25,8 @@ namespace VedaSystem.Application.Services
         private readonly IEmailRepository _emailRepository;
         private readonly IPrescricaoRepository _prescricaoRepository;
         private readonly ITratamentoRepository _tratamentoRepository;
+        private readonly ITerapeutaRepository _terapeutaRepository;
+
 
         public EmailService
             (
@@ -29,6 +34,7 @@ namespace VedaSystem.Application.Services
                 , IEmailRepository emailRepository
                 , IPrescricaoRepository prescricaoRepository
                 , ITratamentoRepository tratamentoRepository
+                , ITerapeutaRepository terapeutaRepository
                 , ILogService logService
             )
             : base(mapper, emailRepository, logService)
@@ -36,6 +42,7 @@ namespace VedaSystem.Application.Services
             _emailRepository = emailRepository;
             _prescricaoRepository = prescricaoRepository;
             _tratamentoRepository = tratamentoRepository;
+            _terapeutaRepository = terapeutaRepository;
         }
 
         public bool EnviarEmail(Email email, Guid IdPrescricao)
@@ -128,71 +135,168 @@ namespace VedaSystem.Application.Services
                 return false;
             }
         }
-
-        public Email GetDadosDeEmailPorTerapeuta(Guid IdTerapeuta)
+        public Email GetDadosDeEmailPorTerapeuta(Guid? IdTerapeuta)
         {
             return _emailRepository.GetPorIdTerapeuta(IdTerapeuta);
         }
-
-        public IEnumerable<Message> GetEmailPorRemetente(Email emailConfig, string nomeRemetente)
+        public IEnumerable<MimeMessage> GetEmailPorRemetente(Email emailConfig, string nomeRemetente)
         {
             return _emailRepository.GetEmailPorRemetente(emailConfig, nomeRemetente);
         }
-
-        public IEnumerable<Message> GetEmailPorTitulo(Email emailConfig, string tituloDoEmail)
+        public IEnumerable<MimeMessage> GetEmailPorTitulo(Email emailConfig, string tituloDoEmail)
         {
             return _emailRepository.GetEmailPorTitulo(emailConfig, tituloDoEmail);
         }
-
-        public IEnumerable<EmailMessageViewModel> GetEmailsInBox(Email emailConfig)
+        public IEnumerable<EmailMessageViewModel> GetEmailsInBox(Email emailConfig, int de = 1, int ate = 10)
         {
-            IEnumerable<Message> messages = _emailRepository.GetEmailsInBox(emailConfig);
             IList<EmailMessageViewModel> emailMessages = new List<EmailMessageViewModel>();
+            IEnumerable<EmailMessageTran> messages;
 
-            for (var i = 0; i < messages.ToList().Count; i++)
+            if (_emailRepository.GetAllInfoMail(emailConfig.TerapeutaId).ToList().Count > 0)
             {
-                Message m = messages.ToList()[i];
+                messages = _emailRepository.GetEmailsInBox(emailConfig, de, ate);
+            }
+            else
+            {
+                messages = _emailRepository.GetEmailsInBox(emailConfig);
+            }
 
-                InfoMail infoMail = _emailRepository.GetInfoMail(emailConfig.TerapeutaId, m.Headers.MessageId);
-
-                emailMessages.Add(new EmailMessageViewModel()
+            foreach (EmailMessageTran m in messages.ToList())
+            {
+                try
                 {
-                    Id = m.Headers.MessageId,
-                    Subject = m.Headers.Subject,
-                    Data = Convert.ToDateTime(m.Headers.DateSent),
-                    De = m.Headers.From.DisplayName,
-                    Horario = Convert.ToDateTime(m.Headers.DateSent).TimeOfDay.ToString(),
-                    PrimeiraLetraDoNome = Convert.ToChar(m.Headers.From.DisplayName.Substring(0, 1)),
-                    CorRadius = (CorRadius)new Random().Next(1, 8),
-                    ExistemAnexos = m.FindAllAttachments().Count > 0 ? true : false,
-                    Lido = infoMail != null ? infoMail.Lido : false,
-                    TerapeutaId = emailConfig.TerapeutaId,
-                    Selected = false,
-                    Titulo = m.Headers.Subject,
-                    BodyText = m.FindFirstPlainTextVersion().GetBodyAsText(),
-                    BodyHtml = m.FindFirstHtmlVersion().GetBodyAsText(),
-                    Grupo = infoMail.Grupo,
-                    Tag = infoMail.Tag,
-                    Para = m.Headers.To.Select(a => a.DisplayName).FirstOrDefault(),
-                    Anexos = m.FindAllAttachments(),
-                    Benchmark = infoMail.Benchmark
-                });
+                    InfoMail infoMail = _emailRepository.GetInfoMail(emailConfig.TerapeutaId, m.Id);
+
+                    emailMessages.Add(new EmailMessageViewModel()
+                    {
+                        Id = m.Id,
+                        Order = m.Order,
+                        Subject = m.Subject,
+                        Data = m.Data,
+                        De = m.De,
+                        Horario = m.Horario,
+                        PrimeiraLetraDoNome = m.PrimeiraLetraDoNome,
+                        CorRadius = (CorRadius)new Random().Next(1, 8),
+                        ExistemAnexos = m.ExistemAnexos,
+                        Lido = infoMail != null ? infoMail.Lido : false,
+                        TerapeutaId = m.TerapeutaId,
+                        Selected = false,
+                        Titulo = m.Titulo,
+                        BodyText = m.BodyText,
+                        BodyHtml = m.BodyHtml,
+                        Grupo = infoMail != null ? infoMail.Grupo : (Grupo)4,
+                        Tag = infoMail != null ? infoMail.Tag : (Tag)3,
+                        Para = m.Para,
+                        Anexos = m.Anexos,
+                        Benchmark = infoMail != null ? infoMail.Benchmark : false,
+                        Enviado = infoMail != null ? infoMail.Enviado : false,
+                        Excluido = infoMail != null ? infoMail.Excluido : false,
+                        Rascunho = infoMail != null ? infoMail.Rascunho : false,
+                        To = infoMail != null ? infoMail.To : ""
+                    });
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
             }
             EqualizarBaseInfosEmails(emailMessages);
 
+            if (emailMessages.Count > 10)
+            {
+                return emailMessages.Take(10);
+            }
+            else
+            {
+                return emailMessages;
+            }
+        }
+        public IEnumerable<EmailMessageViewModel> GetEmailsInBox(Email emailConfig, string tipoMensagem, int de = 1, int ate = 10)
+        {
+            List<EmailMessageViewModel> emailMessages = new List<EmailMessageViewModel>();
+            IEnumerable<EmailMessageTran> messages;
+
+            messages = _emailRepository.GetEmailsInBox(emailConfig);
+            try
+            {
+                foreach (EmailMessageTran m in messages.ToList())
+                {
+                    try
+                    {
+                        InfoMail infoMail = _emailRepository.GetInfoMail(emailConfig.TerapeutaId, m.Id);
+
+                        emailMessages.Add(new EmailMessageViewModel()
+                        {
+                            Id = m.Id,
+                            Order = m.Order,
+                            Subject = m.Subject,
+                            Data = m.Data,
+                            De = m.De,
+                            Horario = m.Horario,
+                            PrimeiraLetraDoNome = m.PrimeiraLetraDoNome,
+                            CorRadius = (CorRadius)new Random().Next(1, 8),
+                            ExistemAnexos = m.ExistemAnexos,
+                            Lido = infoMail != null ? infoMail.Lido : false,
+                            TerapeutaId = m.TerapeutaId,
+                            Selected = false,
+                            Titulo = m.Titulo,
+                            BodyText = m.BodyText,
+                            BodyHtml = m.BodyHtml,
+                            Grupo = infoMail != null ? infoMail.Grupo : (Grupo)4,
+                            Tag = infoMail != null ? infoMail.Tag : (Tag)3,
+                            Para = m.Para,
+                            Anexos = m.Anexos,
+                            Benchmark = infoMail != null ? infoMail.Benchmark : false,
+                            Enviado = infoMail != null ? infoMail.Enviado : false,
+                            Excluido = infoMail != null ? infoMail.Excluido : false,
+                            Rascunho = infoMail != null ? infoMail.Rascunho : false,
+                            To = infoMail != null ? infoMail.To : ""
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        continue;
+                    }
+                }
+
+                EqualizarBaseInfosEmails(emailMessages);
+
+                switch (tipoMensagem)
+                {
+                    case "favoritos":
+                        emailMessages = emailMessages.Where(a => a.Benchmark == true).Select(a => a).ToList();
+                        emailMessages = emailMessages.Count() > (ate - 1) ? emailMessages.GetRange(de - 1, ate - 1) : emailMessages;
+
+                        break;
+                    case "enviados":
+                        emailMessages = emailMessages.Where(a => a.Enviado == true).Select(a => a).ToList();
+                        emailMessages = emailMessages.Count() > (ate - 1) ? emailMessages.GetRange(de - 1, ate - 1) : emailMessages;
+                        break;
+                    case "rascunhos":
+                        emailMessages = emailMessages.Where(a => a.Rascunho == true).Select(a => a).ToList();
+                        emailMessages = emailMessages.Count() > (ate - 1) ? emailMessages.GetRange(de - 1, ate - 1) : emailMessages;
+                        break;
+                    case "lixeira":
+                        emailMessages = emailMessages.Where(a => a.Excluido == true).Select(a => a).ToList();
+                        emailMessages = emailMessages.Count() > (ate - 1) ? emailMessages.GetRange(de - 1, ate - 1) : emailMessages;
+                        break;
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
             return emailMessages;
         }
-
-        public void DeleteMessage(Email emailConfig, int messageNumber)
+        public void DeleteMessage(Email emailConfig, string messageId)
         {
-            _emailRepository.DeleteMessage(emailConfig, messageNumber);
+            _emailRepository.DeleteMessage(emailConfig, messageId);
         }
-
         public void SendMessage(Email emailConfig)
         {
             _emailRepository.SendMessage(emailConfig);
         }
-
         public void EqualizarBaseInfosEmails(IList<EmailMessageViewModel> emailMessages)
         {
             foreach (var email in emailMessages)
@@ -201,6 +305,23 @@ namespace VedaSystem.Application.Services
 
                 if (infoMail == null)
                 {
+                    infoMail = new InfoMail()
+                    {
+                        Id = email.Id,
+                        Order = email.Order,
+                        TerapeutaId = email.TerapeutaId,
+                        Subject = email.Subject,
+                        Body = email.BodyHtml,
+                        To = email.Para,
+                        Grupo = email.Grupo,
+                        Lido = email.Lido,
+                        Benchmark = email.Benchmark,
+                        Tag = email.Tag,
+                        Enviado = email.Enviado,
+                        Excluido = email.Excluido,
+                        Rascunho = email.Rascunho,
+                        DataDeEnvio = email.Data
+                    };
                     InsertInfoMail(infoMail);
                 }
                 else
@@ -209,15 +330,101 @@ namespace VedaSystem.Application.Services
                 }
             }
         }
-
+        public InfoMail GetInfoMailById(Guid terapeutaId, string messageId)
+        {
+            return _emailRepository.GetInfoMail(terapeutaId, messageId);
+        }
         public void InsertInfoMail(InfoMail infoMail)
         {
             _emailRepository.InsertInfoMail(infoMail);
         }
-
         public void UpdateInfoMail(InfoMail infoMail)
         {
             _emailRepository.UpdateInfoMail(infoMail);
+        }
+        public int GetQtdEmails(Email emailConfig)
+        {
+            return _emailRepository.GetQtdEmails(emailConfig);
+        }
+        public int GetQtdEmailsNaoLidos(Email emailConfig)
+        {
+            return _emailRepository.GetQtdEmails(emailConfig);
+        }
+        public override void Add(EmailViewModel entity)
+        {
+            _log.RegistrarLog
+                (
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Add").Name}"
+                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                    , ObjetoJson: JsonConvert.SerializeObject(entity)
+                );
+
+            try
+            {
+                _model = _mapper.Map<Email>(entity);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog
+                 (
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Add").Name}"
+                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                   , ObjetoJson: JsonConvert.SerializeObject(_model)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+
+            _model.TerapeutaId = (Guid)_terapeutaRepository.GetTerapeutaPorNomeDeUsuario(new HttpContextAccessor().HttpContext.User.Identity.Name).Id;
+
+            _repository.Add(_model);
+
+            _log.RegistrarLog
+                (
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Add").Name}"
+                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                    , ObjetoJson: JsonConvert.SerializeObject(_model)
+                );
+        }
+
+        public EmailMessageViewModel GetMessageById(Email emailConfig, string messageId)
+        {
+            MimeMessage m = _emailRepository.GetMessageById(emailConfig, messageId);
+            InfoMail infoMail = _emailRepository.GetInfoMail(emailConfig.TerapeutaId, m.MessageId);
+            EmailMessageViewModel message = null;
+            try
+            {
+                message = new EmailMessageViewModel()
+                {
+                    Id = m.MessageId,
+                    Subject = m.Subject,
+                    Data = Convert.ToDateTime(m.Date.DateTime),
+                    De = !string.IsNullOrEmpty(m.From.Select(a => a.Name).FirstOrDefault()) ? m.From.Select(a => a.Name).FirstOrDefault() : "sem nome",
+                    Horario = Convert.ToDateTime(m.Date.DateTime).TimeOfDay.ToString(),
+                    PrimeiraLetraDoNome = (!string.IsNullOrEmpty(m.From.Select(a => a.Name).FirstOrDefault())) ? Convert.ToChar(m.From.Select(a => a.Name).FirstOrDefault().Substring(0, 1)) : '.',
+                    CorRadius = (CorRadius)new Random().Next(1, 8),
+                    ExistemAnexos = m.Attachments.Count() > 0 ? true : false,
+                    Lido = infoMail != null ? infoMail.Lido : false,
+                    TerapeutaId = emailConfig.TerapeutaId,
+                    Selected = false,
+                    Titulo = m.Subject,
+                    BodyText = !string.IsNullOrEmpty(m.TextBody) ? m.TextBody : "",
+                    BodyHtml = !string.IsNullOrEmpty(m.HtmlBody) ? m.HtmlBody : "",
+                    Grupo = infoMail != null ? infoMail.Grupo : (Grupo)4,
+                    Tag = infoMail != null ? infoMail.Tag : (Tag)3,
+                    Para = m.To != null ? m.To.Select(a => a.Name).FirstOrDefault() : "",
+                    Anexos = m.Attachments.ToList(),
+                    Benchmark = infoMail != null ? infoMail.Benchmark : false,
+                    Enviado = infoMail != null ? infoMail.Enviado : false,
+                    Excluido = infoMail != null ? infoMail.Excluido : false,
+                    Rascunho = infoMail != null ? infoMail.Rascunho : false,
+                    To = infoMail != null ? infoMail.To : ""
+                };
+            }catch(Exception e)
+            {
+
+            }
+
+            return message;
         }
     }
 }

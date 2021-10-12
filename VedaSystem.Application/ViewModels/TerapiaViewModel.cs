@@ -23,12 +23,17 @@ namespace VedaSystem.Application.ViewModels
         [Display(Name = "Duração")]
         public TimeSpan Duracao { get; set; }
 
-        [Display(Name = "List de Materiais")]
+        [Display(Name = "Lista de Materiais")]
         public List<MaterialTerapiaViewModel> Materiais { get; set; }
+
+        public MaterialTerapiaViewModel MaterialSelecionado { get; set; }
 
         [Display(Name = "Observações")]
         public string Observacao { get; set; }
+        
+        public IList<EstoqueMaterialViewModel> Estoque { get; set; }
 
         public IList<TerapiaViewModel> TerapiasAdmin { get; set; }
+        public bool Ativo { get; set; } = false;
     }
 }

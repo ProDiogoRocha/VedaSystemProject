@@ -17,7 +17,7 @@ namespace VedaSystem.Application.AutoMapper
             CreateMap<Agenda, AgendaViewModel>();
             CreateMap<Email, EmailViewModel>();
             CreateMap<EstoqueMaterial, EstoqueMaterialViewModel>();
-            //CreateMap<HorarioViewModel, Horario>();
+            CreateMap<Horario, HorarioTerapeutaViewModel>();
             CreateMap<Log, LogViewModel>();
             CreateMap<MaterialTerapia, MaterialTerapiaViewModel>();
             CreateMap<Medicamento, MedicamentoViewModel>();
@@ -28,6 +28,11 @@ namespace VedaSystem.Application.AutoMapper
             CreateMap<Terapia, TerapiaViewModel>();
             CreateMap<Tradutor, TradutorViewModel>();
             CreateMap<Transmissao, TransmissaoViewModel>();
+            CreateMap<Depoimento, DepoimentoViewModel>();
+            CreateMap<FichaClinicaPaciente, FichaClinicaPacienteViewModel>();
+            CreateMap<QuestionarioPosDiagnostico, QuestionarioPosDiagnosticoViewModel>();
+
+
         }
     }
 }

@@ -11,11 +11,9 @@ namespace VedaSystem.Infra.Data.Mappings
             builder.HasKey(t => t.Id);
 
             builder.Property(t => t.NomeTerapia)
-                .HasMaxLength(50)
-                .IsRequired();
+                .HasMaxLength(50);
 
-            builder.Property(t => t.Duracao)
-                .IsRequired();
+            builder.Property(t => t.Duracao);
 
             builder.HasMany(t => t.Materiais)
                 .WithOne(m => m.Terapia)
@@ -23,6 +21,8 @@ namespace VedaSystem.Infra.Data.Mappings
 
             builder.Property(t => t.Observacao)
                 .HasMaxLength(300);
+
+            builder.Property(t => t.Ativo);
         }
     }
 }

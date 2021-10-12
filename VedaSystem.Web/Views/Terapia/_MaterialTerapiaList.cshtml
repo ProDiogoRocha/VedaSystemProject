@@ -1,0 +1,18 @@
+﻿@model VedaSystem.Application.ViewModels.MaterialTerapiaViewModel
+
+<div id="@Model.Id" class="task-item d-flex align-items-center  bgc-h-green-l3 brc-secondary-l3 px-2 listMaterial">
+    @Html.HiddenFor(model => model.Id)
+    <label class="flex-grow-1 mr-3 py-3 col-sm-5" for="task-item-0">
+        <span class="align-middle">
+            @Html.DisplayFor(model => model.Descricao)
+        </span>
+    </label>
+    <label class="flex-grow-1 mr-3 py-3 col-sm-4" for="task-item-0">
+        <input onkeyup="atualizarQtdMaterialTerapia('@Model.Id')" asp-for="@Model.Descricao" type="number" class="align-middle input-sm ml-2 mr-25 col-sm-12" id="_input_@Model.Id" />
+    </label>
+    <label class="flex-grow-1 mr-3 py-3 col-sm-1" for="task-item-0">
+        <i class="fa fa-trash text-danger-m1" onclick="removerMaterialTerapia('@Model.Id')"></i>
+    </label>
+</div>
+
+

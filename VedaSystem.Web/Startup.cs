@@ -39,10 +39,6 @@ namespace VedaSystem.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDatabaseConfiguration(Configuration);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -60,7 +56,7 @@ namespace VedaSystem.Web
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.ConsentCookie.IsEssential = true;
-                options.CheckConsentNeeded = context => false;
+                options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -89,7 +85,10 @@ namespace VedaSystem.Web
             services.AddControllersWithViews();
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
@@ -106,8 +105,6 @@ namespace VedaSystem.Web
             }
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
@@ -115,6 +112,10 @@ namespace VedaSystem.Web
             app.UseAuthorization();
 
             app.UseCookiePolicy();
+
+            app.UseSession();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

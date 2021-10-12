@@ -1,5 +1,4 @@
-﻿using IdentityModel;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +13,6 @@ using VedaSystem.Application.Utils;
 using VedaSystem.Application.ViewModels;
 using VedaSystem.Domain.Enums;
 using VedaSystem.Domain.Models;
-using VedaSystem.Web.Models;
 
 namespace VedaSystem.Web.Controllers
 {
@@ -23,12 +21,14 @@ namespace VedaSystem.Web.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly ITerapeutaService _terapeutaService;
+        private readonly IEmailService _emailService;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         public LoginController(
               IUsuarioService usuarioService
             , ITerapeutaService terapeutaService
+            , IEmailService emailService
             , ILogService logService
             , RoleManager<IdentityRole> roleManager
             , UserManager<ApplicationUser> userManager
@@ -38,6 +38,7 @@ namespace VedaSystem.Web.Controllers
         {
             _usuarioService = usuarioService;
             _terapeutaService = terapeutaService;
+            _emailService = emailService;
             _httpContext = HttpContext;
             _roleManager = roleManager;
             _userManager = userManager;
@@ -63,22 +64,7 @@ namespace VedaSystem.Web.Controllers
             {
                 usuario = new UsuarioViewModel("VedaAdmin", "VedaAdmin", DateTime.Now, "VedaCorp", "vedaadmin@vedasystem.com.br", DateTime.Now, TipoUsuario.Admin);
 
-                var user = new ApplicationUser { UserName = usuario.NomeDeUsuario, Email = usuario.Email };
-                var result = _userManager.CreateAsync(user, usuario.Senha).Result;
-                if (result.Succeeded)
-                {
-                    var applicationRole = _roleManager.FindByNameAsync(RetornaPerfil(usuario.TipoUsuario));
-
-                    if (applicationRole != null)
-                    {
-                        IdentityResult roleResult = _userManager.AddToRoleAsync(user, applicationRole.Result.Name).Result;
-                    }
-
-                    usuario.Id = Guid.Parse(user.Id);
-                    Cripto<UsuarioViewModel>.CriptografarDadosSigilosos(usuario);
-
-                    _usuarioService.Add(usuario);
-                }
+                _usuarioService.Add(usuario);
 
                 _log.RegistrarLog(
                         Informacao: $@"1º Passo | Contexto de {this.GetType().Name.Replace("Controller", "")}, Finalizando Módulo {this.GetType().GetMethod("Index").Name}"
@@ -124,14 +110,6 @@ namespace VedaSystem.Web.Controllers
             if (usuario != null)
             {
                 GravarAutenticacao(usuario);
-                TempData["Usuario"] = JsonConvert.SerializeObject(usuario);
-
-                TerapeutaViewModel terapeutaViewModel = _terapeutaService.GetTerapeutaPorNomeDeUsuario(usuario.NomeDeUsuario);
-
-                if(terapeutaViewModel != null)
-                {
-                    TempData["Terapeuta"] = JsonConvert.SerializeObject(terapeutaViewModel);
-                }
 
                 _log.RegistrarLog(
                       Informacao: $@"1º Passo | Contexto de {this.GetType().Name.Replace("Controller", "")}, Usuario Encontrado--> Gravando Cookie {this.GetType().GetMethod("EfetuarLogin").Name}"
@@ -159,6 +137,14 @@ namespace VedaSystem.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult ColetarDados()
+        {
+            var teste = Response.Cookies;
+
+            return Json("teste");
+        }
+
+        [HttpGet]
         public IActionResult EfetuarLogoff()
         {
             _log.RegistrarLog(
@@ -183,16 +169,16 @@ namespace VedaSystem.Web.Controllers
             var claims = new List<Claim>();
 
             var roles = _userManager.GetRolesAsync(usuario).Result;
-            
+
             foreach (var roleName in roles)
             {
-                claims.Add(new Claim(JwtClaimTypes.Role, roleName));
+                claims.Add(new Claim(IdentityModel.JwtClaimTypes.Role, roleName));
                 if (_roleManager.SupportsRoleClaims)
                 {
                     var role = _roleManager.FindByNameAsync(roleName).Result;
                     if (role != null)
                     {
-                        claims.AddRange( _roleManager.GetClaimsAsync(role).Result);
+                        claims.AddRange(_roleManager.GetClaimsAsync(role).Result);
                     }
                 }
             }
@@ -208,30 +194,7 @@ namespace VedaSystem.Web.Controllers
 
             var identidadeDeUsuario = new ClaimsIdentity(claims, "Login");
             ClaimsPrincipal claimPrincipal = new ClaimsPrincipal(identidadeDeUsuario);
-
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimPrincipal, propriedadesDeAutenticacao);
-        }
-
-        private string RetornaPerfil(TipoUsuario tipoUsuario)
-        {
-            string tipo = "";
-            switch (tipoUsuario)
-            {
-                case TipoUsuario.Admin:
-                    tipo = "Admin";
-                    break;
-                case TipoUsuario.Terapeuta:
-                    tipo = "Terapeuta";
-                    break;
-                case TipoUsuario.Paciente:
-                    tipo = "Paciente";
-                    break;
-                case TipoUsuario.FreeUser:
-                    tipo = "FreeUser";
-                    break;
-            }
-
-            return tipo;
         }
 
         private async void LogOut(string nomeCookie)

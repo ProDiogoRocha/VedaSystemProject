@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -36,12 +37,12 @@ namespace VedaSystem.Web.Controllers
 
             var t = _service.GetAll();
 
-            _log.RegistrarLog
-                  (
-                      Informacao: $@"1º Passo | Contexto de {this.GetType().Name.Replace("Controller", "")}, Finalizando Módulo Index",
-                      Controller_Action: $@"[HttpGet]-{this.GetType().Name}/Index",
-                      ObjetoJson: JsonConvert.SerializeObject(t)
-                  );
+            //_log.RegistrarLog
+            //      (
+            //          Informacao: $@"1º Passo | Contexto de {this.GetType().Name.Replace("Controller", "")}, Finalizando Módulo Index",
+            //          Controller_Action: $@"[HttpGet]-{this.GetType().Name}/Index",
+            //          ObjetoJson: JsonConvert.SerializeObject(t)
+            //      );
             return _PartilView("Index", "", t);
         }
 
@@ -58,6 +59,7 @@ namespace VedaSystem.Web.Controllers
             return _PartilView(NomePartial: "_TerapeutasList", DivRender: "", Model: terapeutaViewModel);
         }
 
+        [HttpPost]
         public override IActionResult Create(TerapeutaViewModel entity, string returnUrl = null)
         {
             entity.GetType().GetProperty("Id").SetValue(entity, Guid.NewGuid());
@@ -81,22 +83,83 @@ namespace VedaSystem.Web.Controllers
                 _service.Add(entity);
                 _usuarioService.Add(new UsuarioViewModel()
                 {
-                      Id = Guid.NewGuid()
-                    , TipoUsuario = Domain.Enums.TipoUsuario.Terapeuta
-                    , Senha = entity.Senha
-                    , ConfirmeSenha = entity.ConfirmeSenha
-                    , DataCadastro = DateTime.Now
-                    , DataNascimento = entity.DataNascimento
-                    , Email = entity.Email
-                    , Endereco = entity.Endereco
-                    , Foto = entity.Logo
-                    , NomeDeUsuario = entity.NomeDeUsuario
+                    Id = Guid.NewGuid()
+                    ,
+                    TipoUsuario = Domain.Enums.TipoUsuario.Terapeuta
+                    ,
+                    Senha = entity.Senha
+                    ,
+                    ConfirmeSenha = entity.ConfirmeSenha
+                    ,
+                    DataCadastro = DateTime.Now
+                    ,
+                    DataNascimento = entity.DataNascimento
+                    ,
+                    Email = entity.Email
+                    ,
+                    Endereco = entity.Endereco
+                    ,
+                    Foto = entity.Logo
+                    ,
+                    NomeDeUsuario = entity.NomeDeUsuario
                 });
 
                 return RedirectToAction(nameof(Index));
             }
 
             return View(entity);
+        }
+
+
+        public override IActionResult CreateWithJson(string entity)
+        {
+            TerapeutaViewModel terapeutaViewModel = new TerapeutaViewModel();
+            try
+            {
+                var format = "yyyy-MM-dd HH:mm:ss";
+                var dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = format };
+                terapeutaViewModel = JsonConvert.DeserializeObject<TerapeutaViewModel>(entity);
+            }
+            catch (Exception e)
+            {
+
+            }
+            _log.RegistrarLog
+                (
+                    Informacao: $@"1º Passo | Contexto de {this.GetType().Name.Replace("Controller", "")}, Iniciando Módulo Create",
+                    Controller_Action: $@"[HttpPost]-{this.GetType().Name}/Create",
+                    ObjetoJson: JsonConvert.SerializeObject(terapeutaViewModel)
+                );
+
+            if (terapeutaViewModel.ImagemUpload != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                terapeutaViewModel.ImagemUpload.OpenReadStream().CopyTo(ms);
+
+                terapeutaViewModel.Logo = ms.GetBuffer();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _service.Add(terapeutaViewModel);
+                _usuarioService.Add(new UsuarioViewModel()
+                {
+                     Id = Guid.NewGuid()
+                    ,TipoUsuario = Domain.Enums.TipoUsuario.Terapeuta
+                    ,Senha = terapeutaViewModel.Senha
+                    ,ConfirmeSenha = terapeutaViewModel.ConfirmeSenha
+                    ,DataCadastro = DateTime.Now
+                    ,DataNascimento = terapeutaViewModel.DataNascimento
+                    ,Email = terapeutaViewModel.Email
+                    ,Endereco = terapeutaViewModel.Endereco
+                    ,Foto = terapeutaViewModel.Logo
+                    ,NomeDeUsuario = terapeutaViewModel.NomeDeUsuario
+                });
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return _PartilView("Create", null, terapeutaViewModel);
         }
 
         public override IActionResult Edit(Guid id)

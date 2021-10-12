@@ -86,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -149,6 +149,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
             "OpenPop.NET": {
               "target": "Package",
               "version": "[2.0.6.1120, )"
@@ -173,7 +177,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -232,6 +236,14 @@
               "target": "Package",
               "version": "[6.4.4, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
+            "MailSystem.Net-trunk": {
+              "target": "Package",
+              "version": "[2.1.41, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.4, )"
@@ -272,13 +284,17 @@
               "target": "Package",
               "version": "[2.0.6.1120, )"
             },
-            "Selenium.Chrome.WebDriver": {
-              "target": "Package",
-              "version": "[85.0.0, )"
-            },
             "Selenium.WebDriver": {
               "target": "Package",
               "version": "[3.141.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[91.0.4472.1900, )"
+            },
+            "UAParser": {
+              "target": "Package",
+              "version": "[3.1.47, )"
             }
           },
           "imports": [
@@ -296,7 +312,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -361,21 +377,23 @@
               "target": "Package",
               "version": "[5.0.4, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.4, )"
-            },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[5.0.4, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.AspNetCore.Mvc.Formatters.Json": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[5.0.6, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -400,7 +418,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

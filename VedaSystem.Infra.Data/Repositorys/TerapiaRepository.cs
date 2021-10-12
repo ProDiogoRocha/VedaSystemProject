@@ -53,5 +53,34 @@ namespace VedaSystem.Infra.Data.Repositorys
                );
             return terapias;
         }
+
+        public override IEnumerable<Terapia> GetAll()
+        {
+            return DbSet.Where(t => t.Ativo == true).Select(t => t).ToList();
+        }
+
+        public override Terapia GetById(Guid id, bool ativo = true)
+        {
+            return DbSet.Where(t => t.Id == id && t.Ativo == true).Select(t => t).FirstOrDefault();
+        }
+
+        public override void Remove(Terapia t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Remove(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Remove"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Remove"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace VedaSystem.Domain.Models
         public virtual IList<Terapeuta> Terapeutas { get; set; }
         public virtual IList<Agenda> Agendas { get; set; }
         public string Observacao { get; set; }
+        public bool Ativo { get; set; } = false;
     }
 }

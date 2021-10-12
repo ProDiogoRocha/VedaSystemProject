@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using MimeKit;
 using OpenPop.Mime;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace VedaSystem.Application.ViewModels
     public class EmailMessageViewModel
     {
         public string Id { get; set; }
+        public int Order { get; set; }
         public Guid TerapeutaId { get; set; }
         public bool Selected { get; set; }
         public bool Benchmark { get; set; }
@@ -25,8 +27,12 @@ namespace VedaSystem.Application.ViewModels
         public bool Lido { get; set; }
         public string Para { get; set; }
         public string Subject { get; set; }
-        public IList<MessagePart> Anexos { get; set; }
+        public IList<MimeEntity> Anexos { get; set; }
         public string BodyText { get; set; }
         public string BodyHtml { get; set; }
+        public bool Rascunho { get; set; }
+        public bool Enviado { get; set; }
+        public bool Excluido { get; set; }
+        public string To { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using System.Net.Mail;
 namespace VedaSystem.Domain.Models
 {
     [Table("Emails")]
+    [Serializable]
     public class Email
     {
         public Guid Id { get; set; }
@@ -27,7 +28,7 @@ namespace VedaSystem.Domain.Models
         public string Smtp { get; set; }
 
         [NotMapped]
-        public IFormFile Anexo { get { return Anexo; } set { Anexos.Add(value); } }
+        public IFormFile Anexo { get; set; }
 
         [NotMapped]
         private IList<IFormFile> Anexos { get; set; }

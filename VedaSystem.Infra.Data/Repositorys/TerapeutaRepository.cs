@@ -63,7 +63,6 @@ namespace VedaSystem.Infra.Data.Repositorys
                      , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetTerapeutasPorTerapia").Name}"
                      , ObjetoJson: JsonConvert.SerializeObject(idTerapia)
                  );
-
             try
             {
                 terapeutas = _ctxTerapeuta.Terapeutas.FromSqlRaw($@"SELECT A.* FROM  Terapeuta A
@@ -137,15 +136,15 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
-                _listModel = _ctxTerapeuta.Terapeutas
-                    .Include(x => x.Terapias)
-                    .Include(x => x.Pacientes)
-                    .Include(x=>x.TerapiasPrincipais)
-                    .Include(x=>x.Agendas)
-                    .Include(x=>x.Horarios)
-                    .Include(x=>x.Precricoes)
-                    .Include(x=>x.Transmissoes)
-                    .ToList();
+                //_listModel = _ctxTerapeuta.Terapeutas.AsNoTracking().ToList();
+                _listModel = _ctxTerapeuta.Terapeutas.AsNoTracking()
+                .Include(x => x.Terapias)
+                .Include(x => x.Pacientes)
+                .Include(x => x.TerapiasPrincipais)
+                .Include(x => x.Agendas)
+                .Include(x => x.Horarios)
+                .Include(x => x.Precricoes)
+                .ToList();
             }
             catch (Exception e)
             {
@@ -157,14 +156,82 @@ namespace VedaSystem.Infra.Data.Repositorys
                    , Excecao: e.ToString());
             }
 
+           // _log.RegistrarLog
+           //(
+           //      Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Remove").Name}"
+           //    , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+           //    , ObjetoJson: JsonConvert.SerializeObject(_listModel)
+           //);
+            return _listModel;
+        }
+
+        public override Terapeuta GetById(Guid id, bool ativo)
+        {
+            _log.RegistrarLog
+                 (
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando GetById"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
+                     , ObjetoJson: JsonConvert.SerializeObject(id)
+                 );
+
+            try
+            {
+                _model = _ctxTerapeuta.Terapeutas.AsNoTracking().FirstOrDefault(a=>a.Id == id);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity GetById"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
+                   , ObjetoJson: JsonConvert.SerializeObject(_model)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+
             _log.RegistrarLog
                (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Remove").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
-                   , ObjetoJson: JsonConvert.SerializeObject(_listModel)
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando GetById"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
+                   , ObjetoJson: JsonConvert.SerializeObject(_model)
                );
 
-            return _listModel;
+            return _model;
+        }
+
+        public override void Update(Terapeuta t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Update(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Update"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Update"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+        }
+
+        public override void Remove(Terapeuta t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Remove(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Remove"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Remove"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
         }
     }
 }

@@ -4,15 +4,13 @@
 @{
     Layout = null;
 }
-
 <div class="d-flex flex-wrap py-1 pt-lg-3 pb-lg-2 mt-lg-1">
-    <a href="#" class="btn btn-lighter-primary btn-tp border-0" id="message-list-back-btn">
+    <a href="javascript:VoltarParaInbox()" class="btn btn-lighter-primary btn-tp border-0" id="message-list-back-btn">
         <i class="fa fa-arrow-left mr-1 text-90"></i>
         <span class="text-dark-m3">
             Voltar
         </span>
     </a>
-
     <div class="mx-auto order-last order-sm-0 mt-2 mt-sm-0">
         <div class="dropdown d-inline-block">
             <a href="#" class="btn btn-sm btn-lighter-default btn-text-dark btn-bgc-white btn-h-outline-blue btn-a-outline-blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,39 +22,31 @@
                     <i class="fa fa-reply w-3 text-blue-d2"></i>
                     Responder
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <span class="w-3 d-inline-block">
                         <i class="fa fa-reply fa-flip-horizontal text-green-d2"></i>
                     </span>
                     ENcaminhar
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <i class="fa fa-folder-open text-orange-d2 w-3"></i>
                     Arquivar
                 </a>
-
                 <div class="dropdown-divider"></div>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <i class="fa fa-eye w-3 text-blue-d2"></i>
                     Marcar como lido
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <i class="fa fa-eye-slash w-3 text-green-d2"></i>
                     Marcar como não lido
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <i class="far fa-flag w-3 text-danger-d2"></i>
                     Flag
                 </a>
             </div>
         </div>
-
-
         <div class="dropdown d-inline-block">
             <a href="#" class="btn btn-sm btn-lighter-default btn-text-dark btn-bgc-white btn-h-outline-blue btn-a-outline-blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="far fa-folder mr-1"></i>
@@ -68,24 +58,20 @@
                     <span class="d-inline-block w-2 h-2 border-3 brc-pink radius-round mr-1 mb-1 align-middle"></span>
                     Trabalho
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <span class="d-inline-block w-2 h-2 border-3 brc-blue radius-round mr-1 mb-1 align-middle"></span>
                     Paciente
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <span class="d-inline-block w-2 h-2 border-3 brc-green radius-round mr-1 mb-1 align-middle"></span>
                     Consulta
                 </a>
-
                 <a href="#" class="dropdown-item m-1px px-3 py-1 text-dark-m3 btn btn-lighter-dark btn-h-lighter-secondary btn-a-lighter-secondary btn-bgc-tp radius-0 text-95">
                     <span class="d-inline-block w-2 h-2 border-3 brc-orange radius-round mr-1 mb-1 align-middle"></span>
                     Receita
                 </a>
             </div>
         </div>
-
         <div class="dropdown d-inline-block">
             <a href="#" class="btn btn-sm btn-lighter-default btn-text-dark btn-bgc-white btn-h-outline-danger btn-a-outline-danger">
                 <i class="fa fa-trash-alt text-danger mr-sm-1"></i>
@@ -93,26 +79,19 @@
             </a>
         </div>
     </div>
-
     <div class="d-inline-flex align-items-center">
         <span class="mr-2">
             4 of 151
         </span>
-
         <a href="#" class="btn btn-tp border-0 btn-lighter-blue">
             <i class="fa fa-chevron-left"></i>
         </a>
-
         <a href="#" class="btn btn-tp border-0 btn-lighter-blue">
             <i class="fa fa-chevron-right"></i>
         </a>
     </div>
 </div>
-
-
 <hr class="mt-2 mt-sm-1 brc-black-tp10" />
-
-
 <div class="d-flex flex-column flex-md-row">
     <div>
         <h3 class="mt-2 mb-3 text-130 d-inline-flex align-items-center">
@@ -122,23 +101,18 @@
             </span>
             <span class="align-middle ml-1 badge bgc-default-l3 border-1 brc-default-l1 text-default-d3 text-60 radius-1">Inbox</span>
         </h3>
-
         <div class="d-flex align-items-center">
             <img src="assets/image/avatar/avatar1.jpg" class="w-5 h-5 mx-1 radius-round p-2px bgc-white border-1 brc-grey-l1 shadow-sm" />
-
             <div class="ml-2">
                 <a href="#" class="text-600">
                     @Html.DisplayFor(a => a.De)
                 </a>
-
                 <div class="text-grey">
                     para @Html.DisplayFor(a => a.Para)
                 </div>
             </div>
         </div>
     </div>
-
-
     <div class="ml-auto text-right mt-2 mt-md-0">
         <span class="text-sm text-grey mr-2">
             @{
@@ -146,53 +120,43 @@
                 var Dia = Model.Data.Day;
                 CultureInfo pt = new CultureInfo("pt-PT", false);
                 string dateFormatString = pt.DateTimeFormat.LongDatePattern;
-
                 string Mes = Model.Data.Month.ToString(dateFormatString, new CultureInfo("pt-PT"));
-
                 var Hora = Model.Data.Hour;
                 var Minutos = Model.Data.Minute;
                 var AmPm = Hora > 12 ? "PM" : "AM";
-
                 var contagem = "Hoje";
-
                 if (Model.Data != DateTime.Now)
                 {
                     var count = (DateTime.Now - Model.Data).TotalDays;
                     contagem = count > 1 ? $@"{count} dias atrás" : $@"{count} dia atrás";
                 }
-
             }
             @DiaDaSemana, @Dia de @Mes, @Hora:@Minutos @AmPm (@contagem)
         </span>
-
         <div class="d-inline-block text-nowrap">
             <a href="#" class="btn btn-lighter-blue btn-text-blue border-0 btn-bgc-tp px-2">
                 <i class="fa fa-reply"></i>
             </a>
-
             <a href="#" class="btn btn-lighter-green btn-text-green border-0 btn-bgc-tp px-2">
                 <i class="fa fa-reply fa-flip-horizontal"></i>
             </a>
-
             <a href="#" class="btn btn-lighter-pink btn-text-pink border-0 btn-bgc-tp px-2">
                 <i class="fa fa-print"></i>
             </a>
         </div>
     </div>
 </div>
-
-
 <div class="mt-4">
-    @Html.DisplayFor(a => a.Subject)
+    @{ 
+        var body = string.IsNullOrEmpty(Model.BodyText) ? Model.BodyHtml : Model.BodyText;
+    }
+    @body
 </div>
-
-
 <div class="my-5">
     <h5 class="text-dark-m3 text-600 text-105">
         Anexos
         <span class="text-grey text-400 text-md">(2 files, 30 MB)</span>
     </h5>
-
     <div class="row justify-content-between">
         <div class="col-12 col-md-6 col-lg-5 col-xl-4">
             <ul class="list-unstyled mt-3 p-3 radius-1 bgc-secondary-l4">
@@ -201,7 +165,6 @@
                     {
                         string classe = "";
                         var vetorNomeArquivo = fileName.Split(".");
-
                         switch (vetorNomeArquivo[1].ToLower())
                         {
                             case "pdf":
@@ -241,17 +204,14 @@
                                 classe = "fa-file-arquive";
                                 break; 
                         }
-
                         return classe;
                     }
                 }
-
                 @foreach (var item in Model.Anexos)
                 {
                     <li class="mb-25 d-flex">
-                        <i class="far @RetornaClasseDeArquivo(item.FileName) text-danger text-lg w-3 mr-1"></i>
-                        @item.FileName
-
+                        <i class="far @RetornaClasseDeArquivo(item.ContentDisposition.FileName) text-danger text-lg w-3 mr-1"></i>
+                        @item.ContentDisposition.FileName
                         <div class="ml-auto action-buttons">
                             <a href="#" class="text-blue mr-2">
                                 <i class="fa fa-download"></i>
@@ -264,8 +224,6 @@
                 }
             </ul>
         </div>
-
-
         <div class="col-12 col-md-6 col-lg-5 col-xl-4">
             <div class="text-center text-md-right">
                 <div role="button" class="overflow-hidden d-inline-block radius-1 pos-rel d-style">
@@ -275,7 +233,6 @@
                             <a href="#" class="text-white no-underline mr-2 dh-zoom-3 d-inline-block">
                                 <i class="fa fa-download"></i>
                             </a>
-
                             <a href="#" class="text-white no-underline dh-zoom-3 d-inline-block">
                                 <i class="fa fa-star"></i>
                             </a>
@@ -286,19 +243,13 @@
         </div>
     </div>
 </div>
-
-
 <div class="text-center text-md-left">
     <a href="#" class="btn btn-white px-35 btn-h-lighter-dark">
         <i class="fa fa-reply mr-2"></i>
         Responder   
     </a>
-
     <a href="#" class="btn btn-white px-35 btn-h-lighter-dark">
         Encaminhar
-
-
-
         <i class="fa fa-arrow-right ml-2"></i>
     </a>
 </div>

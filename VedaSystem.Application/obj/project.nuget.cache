@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y8rt368zfEdOzxOCA7vUhYv8vnwRB8vaquQPg0Uu6XoRXCwS788ugGHn2ICuJUoSwkwmyKP4ZJBz+zgu4z4k6g==",
+  "dgSpecHash": "7xEy6/1WpMdLb9H3jVj7yVS0rTgcQLemtu5NH4fAHzsL05fPOHXlJnPIubWygqV82yu0uCFxHItx67CX6XxvKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\prodi\\Documents\\Projetos\\VedaSystemProject\\VedaSystem.Application\\VedaSystem.Application.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "C:\\Users\\prodi\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\htmlrenderer.core\\1.5.0.5\\htmlrenderer.core.1.5.0.5.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\htmlrenderer.pdfsharp\\1.5.0.6\\htmlrenderer.pdfsharp.1.5.0.6.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\mailkit\\2.12.0\\mailkit.2.12.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\mailsystem.net-trunk\\2.1.41\\mailsystem.net-trunk.2.1.41.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.7\\microsoft.aspnet.razor.3.2.7.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\microsoft.aspnet.webhelpers\\3.2.7\\microsoft.aspnet.webhelpers.3.2.7.nupkg.sha512",
@@ -112,11 +114,13 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\mimekit\\2.12.0\\mimekit.2.12.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\openpop.net\\2.0.6.1120\\openpop.net.2.0.6.1120.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\pdfsharp\\1.32.3057\\pdfsharp.1.32.3057.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\portable.bouncycastle\\1.8.10\\portable.bouncycastle.1.8.10.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -137,10 +141,10 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\prodi\\.nuget\\packages\\selenium.chrome.webdriver\\85.0.0\\selenium.chrome.webdriver.85.0.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\selenium.webdriver\\3.141.0\\selenium.webdriver.3.141.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\selenium.webdriver.chromedriver\\91.0.4472.1900\\selenium.webdriver.chromedriver.91.0.4472.1900.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
@@ -188,7 +192,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.metadata\\1.4.2\\system.reflection.metadata.1.4.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.typeextensions\\4.3.0\\system.reflection.typeextensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\system.reflection.typeextensions\\4.4.0\\system.reflection.typeextensions.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
@@ -202,11 +206,11 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.runtime.serialization.primitives\\4.3.0\\system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.algorithms\\4.3.0\\system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.cng\\4.7.0\\system.security.cryptography.cng.4.7.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.csp\\4.3.0\\system.security.cryptography.csp.4.3.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.encoding\\4.3.0\\system.security.cryptography.encoding.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.openssl\\4.3.0\\system.security.cryptography.openssl.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.pkcs\\4.5.0\\system.security.cryptography.pkcs.4.5.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.pkcs\\4.7.0\\system.security.cryptography.pkcs.4.7.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.primitives\\4.3.0\\system.security.cryptography.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
     "C:\\Users\\prodi\\.nuget\\packages\\system.security.cryptography.x509certificates\\4.3.0\\system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
@@ -232,7 +236,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\prodi\\.nuget\\packages\\uaparser\\3.1.47\\uaparser.3.1.47.nupkg.sha512"
   ],
   "logs": [
     {
@@ -251,6 +256,16 @@
       "warningLevel": 1,
       "message": "O pacote 'HtmlRenderer.PdfSharp 1.5.0.6' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net5.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
       "libraryId": "HtmlRenderer.PdfSharp",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'MailSystem.Net-trunk 2.1.41' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net5.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "MailSystem.Net-trunk",
       "targetGraphs": [
         "net5.0"
       ]

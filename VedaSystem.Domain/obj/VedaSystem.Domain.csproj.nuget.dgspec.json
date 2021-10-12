@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
             "OpenPop.NET": {
               "target": "Package",
               "version": "[2.0.6.1120, )"
@@ -87,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

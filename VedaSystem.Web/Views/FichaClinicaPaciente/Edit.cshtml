@@ -1,0 +1,822 @@
+﻿@model VedaSystem.Application.ViewModels.FichaClinicaPacienteViewModel
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <base href="../" />
+
+    <title>Ficha Clínica Paciente - Veda Admin</title>
+
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/nouislider/distribute/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/ion-rangeslider/css/ion.rangeSlider.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/tiny-date-picker.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/date-range-picker.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace-font.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace.css">
+    <link rel="icon" type="image/png" href="~/lib/ace-v3.1.1/assets/favicon.png" />
+</head>
+<body>
+    <di1v class="page-content container container-plus">
+        <div class="card acard mt-2 mt-lg-3">
+            <div class="card-header">
+                <h3 class="card-title text-125 text-primary-d2">
+                    <i class="far fa-edit text-dark-l3 mr-1"></i>
+                    Ficha Clínica - Atualizar
+                </h3>
+            </div>
+            <div id="aviso_ficha_paciente" style="display:none">
+                <span class="text-danger">Não é possivel submeter o formulário sem ao menos preencher um campo!</span>
+            </div>
+
+            <div class="card-body px-3 pb-1">
+                @Html.HiddenFor(p=>p.PacienteId, new { id="id-paciente" })
+                @Html.HiddenFor(p => p.Id, new { id = "id-fichaTecnica" })
+                <div class="accordion" id="accordionQueixas">
+                    <div class="card">
+                        <div class="card-header" id="hQueixasThree">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#queixasThree" data-toggle="collapse" aria-expanded="false" aria-controls="queixasThree">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Queixas do paciente
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="queixasThree" class="collapse" aria-labelledby="hQueixasThree" data-parent="#accordionQueixas">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="QuixasPrincipais" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="QuixasPrincipais" class="form-control col-sm-8 col-md-6" id="QuixasPrincipais"></textarea>
+                                        <span asp-validation-for="QuixasPrincipais" class="text-danger" id="QuixasPrincipais-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="Sintomas" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="Sintomas" class="form-control col-sm-8 col-md-6" id="Sintomas"></textarea>
+                                        <span asp-validation-for="Sintomas" class="text-danger" id="Sintomas-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="TempoSintomas" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="TempoSintomas" class="form-control col-sm-8 col-md-6" id="TempoSintomas" />
+                                        <span asp-validation-for="TempoSintomas" class="text-danger" id="TempoSintomas-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="PioramOuMelhoram" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="PioramOuMelhoram" class="form-control col-sm-8 col-md-6" id="PioramOuMelhoram"></textarea>
+                                        <span asp-validation-for="PioramOuMelhoram" class="text-danger" id="PioramOuMelhoram-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="accordionDiagnostico">
+                    <div class="card">
+                        <div class="card-header" id="headingDiagnostico">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseDiagnostico" data-toggle="collapse" aria-expanded="false" aria-controls="collapseDiagnostico">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Diagnóstico
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseDiagnostico" class="collapse" aria-labelledby="headingDiagnostico" data-parent="#accordionDiagnostico">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="PulsoVikriti" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="PulsoVikriti" class="form-control col-sm-8 col-md-6" id="PulsoVikriti"></textarea>
+                                        <span asp-validation-for="PulsoVikriti" class="text-danger" id="PulsoVikriti-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CaracteristicasLingua" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CaracteristicasLingua" class="form-control col-sm-8 col-md-6" id="CaracteristicasLingua"></textarea>
+                                        <span asp-validation-for="CaracteristicasLingua" class="text-danger" id="CaracteristicasLingua-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CaracteristicasUnhas" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CaracteristicasUnhas" class="form-control col-sm-8 col-md-6" id="CaracteristicasUnhas"></textarea>
+                                        <span asp-validation-for="CaracteristicasUnhas" class="text-danger" id="CaracteristicasUnhas-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="AspectoFisico" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="AspectoFisico" class="form-control col-sm-8 col-md-6" id="AspectoFisico"></textarea>
+                                        <span asp-validation-for="AspectoFisico" class="text-danger" id="AspectoFisico-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="Palpacao" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="Palpacao" class="form-control col-sm-8 col-md-6" id="Palpacao"></textarea>
+                                        <span asp-validation-for="Palpacao" class="text-danger" id="Palpacao-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionRotina" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="rotinaThree">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseRotina" data-toggle="collapse" aria-expanded="false" aria-controls="rotinaThree">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Rotina diária
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseRotina" class="collapse" aria-labelledby="rotinaThree" data-parent="#accordionRotina">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="HoraQueAcorda" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="datetime" asp-for="HoraQueAcorda" class="form-control col-sm-8 col-md-6" id="HoraQueAcorda" />
+                                        <span asp-validation-for="HoraQueAcorda" class="text-danger" id="HoraQueAcorda-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="OqueFazAoAcordar" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="OqueFazAoAcordar" class="form-control col-sm-8 col-md-6" id="OqueFazAoAcordar"></textarea>
+                                        <span asp-validation-for="OqueFazAoAcordar" class="text-danger" id="OqueFazAoAcordar-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="HoraQueDorme" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="datetime" asp-for="HoraQueDorme" class="form-control col-sm-8 col-md-6" id="HoraQueDorme" />
+                                        <span asp-validation-for="HoraQueDorme" class="text-danger" id="HoraQueDorme-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="ComoEOSono" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="ComoEOSono" class="form-control col-sm-8 col-md-6" id="ComoEOSono"></textarea>
+                                        <span asp-validation-for="ComoEOSono" class="text-danger" id="ComoEOSono-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="OQueFazACadaHoraDoDia" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="OQueFazACadaHoraDoDia" class="form-control col-sm-8 col-md-6" id="OQueFazACadaHoraDoDia"></textarea>
+                                        <span asp-validation-for="OQueFazACadaHoraDoDia" class="text-danger" id="OQueFazACadaHoraDoDia-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="OQueComeACadaRefeicao" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="OQueComeACadaRefeicao" class="form-control col-sm-8 col-md-6" id="OQueComeACadaRefeicao"></textarea>
+                                        <span asp-validation-for="OQueComeACadaRefeicao" class="text-danger" id="OQueComeACadaRefeicao-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="HorariosDasRefeicoes" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="HorariosDasRefeicoes" class="form-control col-sm-8 col-md-6" id="HorariosDasRefeicoes"></textarea>
+                                        <span asp-validation-for="HorariosDasRefeicoes" class="text-danger" id="HorariosDasRefeicoes-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionAgnis" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="agnisThree">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseAgnis" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAgnis">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Agni
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseAgnis" class="collapse" aria-labelledby="agnisThree" data-parent="#accordionAgnis">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="Apetite" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <select id="select-Apetite" asp-for="Apetite" asp-items="@(new SelectList(Model.TiposApetites,"Value","Text"))" class="form-control">
+                                            <option>Selecione</option>
+                                        </select>
+                                        <span asp-validation-for="Apetite" class="text-danger" id="Apetite-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="MotivoFome" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="MotivoFome" class="form-control col-sm-8 col-md-6" id="MotivoFome"></textarea>
+                                        <span asp-validation-for="MotivoFome" class="text-danger" id="MotivoFome-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="TempoFomeNovamente" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="number" asp-for="TempoFomeNovamente" class="form-control col-sm-8 col-md-6" id="TempoFomeNovamente" />
+                                        <span asp-validation-for="TempoFomeNovamente" class="text-danger" id="TempoFomeNovamente-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionMalas" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingMalas">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseMalas" data-toggle="collapse" aria-expanded="false" aria-controls="collapseMalas">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Malas
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseMalas" class="collapse" aria-labelledby="headingMalas" data-parent="#accordionMalas">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="QtdSuor" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <select id="select-QtdSuor" asp-for="QtdSuor" asp-items="@(new SelectList(Model.QtdsSuor,"Value","Text"))" class="form-control">
+                                            <option>Selecione</option>
+                                        </select>
+                                        <span asp-validation-for="QtdSuor" class="text-danger" id="QtdSuor-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CheiroSuor" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CheiroSuor" class="form-control col-sm-8 col-md-6" id="CheiroSuor"></textarea>
+                                        <span asp-validation-for="CheiroSuor" class="text-danger" id="CheiroSuor-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="QtdFezes" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <select id="select-QtdFezes" asp-for="QtdFezes" asp-items="@(new SelectList(Model.QtdsFezes,"Value","Text"))" class="form-control">
+                                            <option>Selecione</option>
+                                        </select>
+                                        <span asp-validation-for="QtdFezes" class="text-danger" id="QtdFezes-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CheiroFezes" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CheiroFezes" class="form-control col-sm-8 col-md-6" id="CheiroFezes"></textarea>
+                                        <span asp-validation-for="CheiroFezes" class="text-danger" id="CheiroFezes-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CorFezes" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CorFezes" class="form-control col-sm-8 col-md-6" id="CorFezes"></textarea>
+                                        <span asp-validation-for="CorFezes" class="text-danger" id="CorFezes-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="ConsistenciaFezes" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="ConsistenciaFezes" class="form-control col-sm-8 col-md-6" id="ConsistenciaFezes"></textarea>
+                                        <span asp-validation-for="ConsistenciaFezes" class="text-danger" id="ConsistenciaFezes-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="QtdUrina" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <select id="select-QtdUrina" asp-for="QtdUrina" asp-items="@(new SelectList(Model.QtdsUrina,"Value","Text"))" class="form-control">
+                                            <option>Selecione</option>
+                                        </select>
+                                        <span asp-validation-for="QtdUrina" class="text-danger" id="QtdUrina-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CorUrina" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CorUrina" class="form-control col-sm-8 col-md-6" id="CorUrina"></textarea>
+                                        <span asp-validation-for="CorUrina" class="text-danger" id="CorUrina-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="CheiroUrina" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="CheiroUrina" class="form-control col-sm-8 col-md-6" id="CheiroUrina"></textarea>
+                                        <span asp-validation-for="CheiroUrina" class="text-danger" id="CheiroUrina-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="DesconfortoEliminacoes" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="DesconfortoEliminacoes" class="form-control col-sm-8 col-md-6" id="DesconfortoEliminacoes"></textarea>
+                                        <span asp-validation-for="DesconfortoEliminacoes" class="text-danger" id="DesconfortoEliminacoes-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionVyayama" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingVyayama">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseVyayama" data-toggle="collapse" aria-expanded="false" aria-controls="collapseVyayama">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Vyayama (Exercício)
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseVyayama" class="collapse" aria-labelledby="headingVyayama" data-parent="#accordionVyayama">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="TipoExercicio" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="TipoExercicio" class="form-control col-sm-8 col-md-6" id="TipoExercicio"></textarea>
+                                        <span asp-validation-for="TipoExercicio" class="text-danger" id="TipoExercicio-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="Regularidade" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="Regularidade" class="form-control col-sm-8 col-md-6" id="Regularidade" />
+                                        <span asp-validation-for="Regularidade" class="text-danger" id="Regularidade-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="QtdHorasPorDia" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="QtdHorasPorDia" class="form-control col-sm-8 col-md-6" id="QtdHorasPorDia" />
+                                        <span asp-validation-for="QtdHorasPorDia" class="text-danger" id="QtdHorasPorDia-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionBala" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingBala">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseBala" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBala">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Bala (Disposição)
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseBala" class="collapse" aria-labelledby="headingBala" data-parent="#accordionBala">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="SeSenteBemAoAcordar" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="SeSenteBemAoAcordar" class="form-control col-sm-8 col-md-6" id="SeSenteBemAoAcordar" />
+                                        <span asp-validation-for="SeSenteBemAoAcordar" class="text-danger" id="SeSenteBemAoAcordar-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="SeSenteBemAoLongoDoDia" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="SeSenteBemAoLongoDoDia" class="form-control col-sm-8 col-md-6" id="SeSenteBemAoLongoDoDia" />
+                                        <span asp-validation-for="SeSenteBemAoLongoDoDia" class="text-danger" id="SeSenteBemAoLongoDoDia-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="SenteDisposicaoSeExercitar" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="SenteDisposicaoSeExercitar" class="form-control col-sm-8 col-md-6" id="SenteDisposicaoSeExercitar" />
+                                        <span asp-validation-for="SenteDisposicaoSeExercitar" class="text-danger" id="SenteDisposicaoSeExercitar-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionRaja" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingRaja">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseRaja" data-toggle="collapse" aria-expanded="false" aria-controls="collapseRaja">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Raja (Menstruação)
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseRaja" class="collapse" aria-labelledby="headingRaja" data-parent="#accordionRaja">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="RegularidadeDuracaoDoCiclo" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="RegularidadeDuracaoDoCiclo" class="form-control col-sm-8 col-md-6" id="RegularidadeDuracaoDoCiclo"></textarea>
+                                        <span asp-validation-for="RegularidadeDuracaoDoCiclo" class="text-danger" id="RegularidadeDuracaoDoCiclo-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="Fluxo" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="Fluxo" class="form-control col-sm-8 col-md-6" id="Fluxo" />
+                                        <span asp-validation-for="Fluxo" class="text-danger" id="Fluxo-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="AlgumDisturbio" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="AlgumDisturbio" class="form-control col-sm-8 col-md-6" id="AlgumDisturbio"></textarea>
+                                        <span asp-validation-for="AlgumDisturbio" class="text-danger" id="AlgumDisturbio-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionSono" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingSono">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseSono" data-toggle="collapse" aria-expanded="false" aria-controls="collapseSono">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Sono
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseSono" class="collapse" aria-labelledby="headingSono" data-parent="#accordionSono">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="SenteQueDormeBem" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="SenteQueDormeBem" class="form-control col-sm-8 col-md-6" id="SenteQueDormeBem"></textarea>
+                                        <span asp-validation-for="SenteQueDormeBem" class="text-danger" id="SenteQueDormeBem-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="AcordaANoiteQuantasVezesPorQue" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="AcordaANoiteQuantasVezesPorQue" class="form-control col-sm-8 col-md-6" id="AcordaANoiteQuantasVezesPorQue"></textarea>
+                                        <span asp-validation-for="AcordaANoiteQuantasVezesPorQue" class="text-danger" id="AcordaANoiteQuantasVezesPorQue-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="SeSenteRestauradoPelaManha" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <input type="text" asp-for="SeSenteRestauradoPelaManha" class="form-control col-sm-8 col-md-6" id="SeSenteRestauradoPelaManha" />
+                                        <span asp-validation-for="SeSenteRestauradoPelaManha" class="text-danger" id="SeSenteRestauradoPelaManha-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="SonhaComoSaoOsSonhos" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="SonhaComoSaoOsSonhos" class="form-control col-sm-8 col-md-6" id="SonhaComoSaoOsSonhos"></textarea>
+                                        <span asp-validation-for="SonhaComoSaoOsSonhos" class="text-danger" id="SonhaComoSaoOsSonhos-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="accordionOutras" class="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOutras">
+                            <h2 class="card-title">
+                                <a class="accordion-toggle collapsed d-style" href="#collapseOutras" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOutras">
+                                    <i class="fa fa-plus d-collapsed mr-1"></i>
+                                    <i class="fa fa-minus d-n-collapsed mr-1"></i>
+                                    Outras informações importantes
+                                </a>
+                            </h2>
+                        </div>
+                        <div id="collapseOutras" class="collapse" aria-labelledby="headingOutras" data-parent="#accordionOutras">
+                            <div class="card-body border-1 border-t-0 brc-primary-l1 radius-b-1">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="TomaAlgumMedicamento" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="TomaAlgumMedicamento" class="form-control col-sm-8 col-md-6" id="TomaAlgumMedicamento"></textarea>
+                                        <span asp-validation-for="TomaAlgumMedicamento" class="text-danger" id="TomaAlgumMedicamento-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="FazUsoDeAlgumaSubstânciaViciante" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="FazUsoDeAlgumaSubstânciaViciante" class="form-control col-sm-8 col-md-6" id="FazUsoDeAlgumaSubstânciaViciante"></textarea>
+                                        <span asp-validation-for="FazUsoDeAlgumaSubstânciaViciante" class="text-danger" id="FazUsoDeAlgumaSubstânciaViciante-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                                        <label asp-for="AlgumOutroDadoImportante" for="nome" class="mb-0">
+                                        </label>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <textarea type="text" asp-for="AlgumOutroDadoImportante" class="form-control col-sm-8 col-md-6" id="AlgumOutroDadoImportante"></textarea>
+                                        <span asp-validation-for="AlgumOutroDadoImportante" class="text-danger" id="AlgumOutroDadoImportante-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 border-t-1 bgc-secondary-l4 brc-secondary-l2 py-35 mx-n25">
+                    <div class="offset-md-3 col-md-9 text-nowrap">
+                        <button class="btn btn-info btn-bold px-4" onclick="editFichaClinicaPaciente()">
+                            <i class="fa fa-check mr-1"></i>
+                            Enviar
+                        </button>
+
+                        <button onclick="apagarCampos" class="btn btn-outline-lightgrey btn-bgc-white btn-bold ml-2 px-4" type="reset">
+                            <i class="fa fa-undo mr-1"></i>
+                            Apagar Tudo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </di1v>
+
+    <footer class="footer d-none d-sm-block">
+        <div class="footer-inner bgc-white-tp1">
+            <div class="pt-3 border-none border-t-3 brc-grey-l2 border-double">
+                <span class="text-primary-m1 font-bolder text-120">Veda</span>
+                <span class="text-grey">Application &copy; 2021</span>
+
+                <span class="mx-3 action-buttons">
+                    <a href="#" class="text-blue-m2 text-150"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#" class="text-blue-d2 text-150"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-orange-d1 text-150"><i class="fa fa-rss-square"></i></a>
+                </span>
+            </div>
+        </div><!-- .footer-inner -->
+        <!-- `scroll to top` button inside footer (for example when in boxed layout) -->
+        <div class="footer-tools">
+            <a href="#" class="btn-scroll-up btn btn-dark mb-2 mr-2">
+                <i class="fa fa-angle-double-up mx-2px text-95"></i>
+            </a>
+        </div>
+    </footer>
+
+    <footer class="d-sm-none footer footer-sm footer-fixed">
+        <div class="footer-inner">
+            <div class="btn-group d-flex h-100 mx-2 border-x-1 border-t-2 brc-primary-m3 bgc-white-tp1 radius-t-1 shadow">
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0" data-toggle="modal" data-target="#id-ace-settings-modal">
+                    <i class="fas fa-sliders-h text-blue-m1 text-120"></i>
+                </button>
+
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0">
+                    <i class="fa fa-plus-circle text-green-m1 text-120"></i>
+                </button>
+
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle navbar search">
+                    <i class="fa fa-search text-orange text-120"></i>
+                </button>
+
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0 mr-0">
+                    <span class="pos-rel">
+                        <i class="fa fa-bell text-purple-m1 text-120"></i>
+                        <span class="badge badge-dot bgc-red position-tr mt-n1 mr-n2px"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/autosize/dist/autosize.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap-maxlength/dist/bootstrap-maxlength.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/inputmask/dist/jquery.inputmask.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/nouislider/distribute/nouislider.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/ion-rangeslider/js/ion.rangeSlider.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/dist/date-range-picker.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/moment/moment.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/es6-object-assign/dist/object-assign-auto.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/jaames/iro/dist/iro.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/jquery-knob/dist/jquery.knob.min.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/dist/js/ace.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/app/browser/demo.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/views/pages/form-basic/page-script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $("#form-field-mask-2").inputmask("(99)99999-9999")
+            $("#id-form-field-date-1").inputmask("99/99/9999")
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

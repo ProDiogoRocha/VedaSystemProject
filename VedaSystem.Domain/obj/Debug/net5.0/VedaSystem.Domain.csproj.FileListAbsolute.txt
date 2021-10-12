@@ -1,20 +1,7 @@
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\bin\Debug\net5.0\VedaSystem.Domain.deps.json
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\bin\Debug\net5.0\VedaSystem.Domain.dll
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\bin\Debug\net5.0\ref\VedaSystem.Domain.dll
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\bin\Debug\net5.0\VedaSystem.Domain.pdb
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.csprojAssemblyReference.cache
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.AssemblyInfoInputs.cache
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.AssemblyInfo.cs
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.csproj.CoreCompileInputs.cache
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.dll
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\ref\VedaSystem.Domain.dll
-C:\Users\prodi\source\repos\VedaSystem\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.pdb
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Debug\net5.0\VedaSystem.Domain.deps.json
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Debug\net5.0\VedaSystem.Domain.dll
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Debug\net5.0\ref\VedaSystem.Domain.dll
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\bin\Debug\net5.0\VedaSystem.Domain.pdb
-C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.csprojAssemblyReference.cache
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.AssemblyInfoInputs.cache
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.AssemblyInfo.cs
@@ -22,3 +9,4 @@ C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.dll
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\ref\VedaSystem.Domain.dll
 C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.pdb
+C:\Users\prodi\Documents\Projetos\VedaSystemProject\VedaSystem.Domain\obj\Debug\net5.0\VedaSystem.Domain.csproj.AssemblyReference.cache

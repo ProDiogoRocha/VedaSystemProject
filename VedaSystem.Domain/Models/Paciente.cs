@@ -19,5 +19,7 @@ namespace VedaSystem.Domain.Models
         public virtual IList<Prescricao> Prescricoes { get; set; }
         public virtual IList<Terapeuta> Terapeutas { get; set; }
         public virtual IList<Agenda> Agendas { get; set; }
+        public virtual IList<FichaClinicaPaciente> FichasClinicas { get; set; }
+        public virtual IList<QuestionarioPosDiagnostico> QuestionariosPosDiagnosticos { get; set; }
     }
 }

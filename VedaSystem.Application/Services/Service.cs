@@ -10,15 +10,15 @@ namespace VedaSystem.Application.Services
 {
     public abstract class Service<T, Vm> : IDisposable, IService<T, Vm> where T : class where Vm : class
     {
-        private readonly IRepository<T> _repository;
-        private IMapper _mapper;
+        public readonly IRepository<T> _repository;
+        public IMapper _mapper;
         public LogApp _log;
 
-        private T _model;
-        private Vm _viewModel;
+        public T _model;
+        public Vm _viewModel;
 
-        private IEnumerable<T> _modelList;
-        private IEnumerable<Vm> _viewModelList;
+        public IEnumerable<T> _modelList;
+        public IEnumerable<Vm> _viewModelList;
 
         public Service(IMapper mapper, IRepository<T> repository, ILogService logger)
         {
@@ -35,8 +35,8 @@ namespace VedaSystem.Application.Services
         {
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Add").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando Add"
+                    , Servico_Metodo: $@"{this.GetType().Name}/Add"
                     , ObjetoJson: JsonConvert.SerializeObject(entity)
                 );
 
@@ -48,8 +48,8 @@ namespace VedaSystem.Application.Services
             {
                 _log.RegistrarLog
                  (
-                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Add").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper Add"
+                    , Servico_Metodo: $@"{this.GetType().Name}/Add"
                    , ObjetoJson: JsonConvert.SerializeObject(_model)
                    , Erro: e.Message
                    , Excecao: e.ToString());
@@ -60,8 +60,8 @@ namespace VedaSystem.Application.Services
 
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Add").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando Add"
+                    , Servico_Metodo: $@"{this.GetType().Name}/Add"
                     , ObjetoJson: JsonConvert.SerializeObject(_model)
                 );
         }
@@ -75,8 +75,8 @@ namespace VedaSystem.Application.Services
         {
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("GetAll").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando GetAll"
+                    , Servico_Metodo: $@"{this.GetType().Name}/GetAll"
                 );
 
             _modelList = _repository.GetAll();
@@ -88,32 +88,37 @@ namespace VedaSystem.Application.Services
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("GetAll").Name}"
-                   , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper GetAll"
+                   , Servico_Metodo: $@"{this.GetType().Name}/GetAll"
                    , ObjetoJson: JsonConvert.SerializeObject(_modelList)
                    , Erro: e.Message
                    , Excecao: e.ToString());
             }
 
-            _log.RegistrarLog
-                (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("GetAll").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
-                    , ObjetoJson: JsonConvert.SerializeObject(_viewModelList)
-                );
+            //_log.RegistrarLog
+            //    (
+            //          Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando GetAll"
+            //        , Servico_Metodo: $@"{this.GetType().Name}/GetAll"
+            //        , ObjetoJson: JsonConvert.SerializeObject(_viewModelList)
+            //    );
 
             return _viewModelList;
         }
 
         public virtual Vm GetById(Guid id)
         {
-            _log.RegistrarLog
-                (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("GetById").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetById").Name}"
-                    , ObjetoJson: JsonConvert.SerializeObject(id)
-                );
+            try
+            {
+                _log.RegistrarLog
+                    (
+                          Informacao: $@"2º Passo | {this.GetType().Name }, Iniciando GetById"
+                        , Servico_Metodo: $@"{this.GetType().Name}/GetById"
+                        , ObjetoJson: JsonConvert.SerializeObject(id)
+                    );
+            }catch(Exception e)
+            {
 
+            }
             _model = _repository.GetById(id);
 
             try
@@ -123,8 +128,8 @@ namespace VedaSystem.Application.Services
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("GetById").Name}"
-                   , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetById").Name}"
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper GetById"
+                   , Servico_Metodo: $@"{this.GetType().Name}/GetById"
                    , ObjetoJson: JsonConvert.SerializeObject(_model)
                    , Erro: e.Message
                    , Excecao: e.ToString());
@@ -132,8 +137,8 @@ namespace VedaSystem.Application.Services
 
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("GetById").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetById").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando GetById"
+                    , Servico_Metodo: $@"{this.GetType().Name}/GetById"
                     , ObjetoJson: JsonConvert.SerializeObject(_viewModel)
                 );
 
@@ -144,8 +149,8 @@ namespace VedaSystem.Application.Services
         {
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Remove").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando Remove"
+                    , Servico_Metodo: $@"{this.GetType().Name}/Remove"
                     , ObjetoJson: JsonConvert.SerializeObject(entity)
                 );
             try
@@ -156,8 +161,8 @@ namespace VedaSystem.Application.Services
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Remove").Name}"
-                   , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper Remove"
+                   , Servico_Metodo: $@"{this.GetType().Name}/Remove"
                    , ObjetoJson: JsonConvert.SerializeObject(entity)
                    , Erro: e.Message
                    , Excecao: e.ToString());
@@ -166,8 +171,8 @@ namespace VedaSystem.Application.Services
 
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Remove").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando Remove"
+                    , Servico_Metodo: $@"{this.GetType().Name}/Remove"
                     , ObjetoJson: JsonConvert.SerializeObject(_model)
                 );
         }
@@ -176,8 +181,8 @@ namespace VedaSystem.Application.Services
         {
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Update").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando Update"
+                    , Servico_Metodo: $@"{this.GetType().Name}/Update"
                     , ObjetoJson: JsonConvert.SerializeObject(entity)
                 );
             try
@@ -187,8 +192,8 @@ namespace VedaSystem.Application.Services
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                    Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Update").Name}"
-                  , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                    Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper Update"
+                  , Servico_Metodo: $@"{this.GetType().Name}/Update"
                   , ObjetoJson: JsonConvert.SerializeObject(entity)
                   , Erro: e.Message
                   , Excecao: e.ToString());
@@ -197,8 +202,8 @@ namespace VedaSystem.Application.Services
 
             _log.RegistrarLog
                (
-                     Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Update").Name}"
-                   , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                     Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando Update"
+                   , Servico_Metodo: $@"{this.GetType().Name}/Update"
                    , ObjetoJson: JsonConvert.SerializeObject(_model)
                );
         }
@@ -207,8 +212,8 @@ namespace VedaSystem.Application.Services
         {
             _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Update").Name}"
-                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando GetByName"
+                    , Servico_Metodo: $@"{this.GetType().Name}/GetByName"
                     , ObjetoJson: JsonConvert.SerializeObject(name)
                 );
 
@@ -221,8 +226,8 @@ namespace VedaSystem.Application.Services
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                    Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Update").Name}"
-                  , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                    Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper GetByName"
+                  , Servico_Metodo: $@"{this.GetType().Name}/GetByName"
                   , ObjetoJson: JsonConvert.SerializeObject(_modelList)
                   , Erro: e.Message
                   , Excecao: e.ToString());
@@ -230,12 +235,47 @@ namespace VedaSystem.Application.Services
 
             _log.RegistrarLog
                (
-                     Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Update").Name}"
-                   , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                     Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando GetByName"
+                   , Servico_Metodo: $@"{this.GetType().Name}/GetByName"
                    , ObjetoJson: JsonConvert.SerializeObject(_viewModelList)
                );
 
             return _viewModelList;
+        }
+
+        public Vm GetById(Guid id, bool ativo)
+        {
+            _log.RegistrarLog
+                (
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando GetById"
+                    , Servico_Metodo: $@"{this.GetType().Name}/GetById"
+                    , ObjetoJson: JsonConvert.SerializeObject(id)
+                );
+
+            _model = _repository.GetById(id, ativo);
+
+            try
+            {
+                _viewModel = _mapper.Map<Vm>(_model);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper GetById"
+                   , Servico_Metodo: $@"{this.GetType().Name}/GetById"
+                   , ObjetoJson: JsonConvert.SerializeObject(_model)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+
+            _log.RegistrarLog
+                (
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando GetById"
+                    , Servico_Metodo: $@"{this.GetType().Name}/GetById"
+                    , ObjetoJson: JsonConvert.SerializeObject(_viewModel)
+                );
+
+            return _viewModel;
         }
     }
 }

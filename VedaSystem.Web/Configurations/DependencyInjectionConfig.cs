@@ -4,6 +4,8 @@ using VedaSystem.Application.Interfaces;
 using VedaSystem.Application.Services;
 using VedaSystem.Domain.Interfaces;
 using VedaSystem.Infra.Data.Repositorys;
+using VedaSystem.Web.Interface;
+using VedaSystem.Web.Utils;
 
 namespace VedaSystem.Web.Configurations
 {
@@ -29,6 +31,12 @@ namespace VedaSystem.Web.Configurations
             services.AddTransient<IEstoqueMaterialService, EstoqueMaterialService>();
             services.AddTransient<ITratamentoService, TratamentoService>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IDepoimentoService, DepoimentoService>();
+            services.AddTransient<IFichaClinicaPacienteService, FichaClinicaPacienteService>();
+            services.AddTransient<IQuestionarioPosDiagnosticoService, QuestionarioPosDiagnosticoService>();
+
+
+
             #endregion
 
             #region Repositories
@@ -47,6 +55,15 @@ namespace VedaSystem.Web.Configurations
             services.AddTransient<IEstoqueMaterialRepository, EstoqueMaterialRepository>();
             services.AddTransient<ITratamentoRepository, TratamentoRepository>();
             services.AddTransient<IEmailRepository, EmailRepository>();
+            services.AddTransient<IDepoimentoRepository, DepoimentoRepository>();
+            services.AddTransient<IFichaClinicaPacienteRepository, FichaClinicaPacienteRepository>();
+            services.AddTransient<IQuestionarioPosDiagnosticoRepository, QuestionarioPosDiagnosticoRepository>();
+
+
+            #endregion
+
+            #region Others
+            services.AddTransient<IUser, AspNetUser>();
             #endregion
         }
     }

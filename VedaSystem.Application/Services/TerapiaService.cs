@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using VedaSystem.Application.Interfaces;
 using VedaSystem.Application.ViewModels;
 using VedaSystem.Domain.Interfaces;
@@ -17,6 +18,11 @@ namespace VedaSystem.Application.Services
         {
             _mapper = mapper;
             _repository = repository;
+        }
+
+        public IEnumerable<TerapiaViewModel> BuscarTerapiaPorTerapeuta(Guid idTerapeuta)
+        {
+            return _mapper.Map<IEnumerable<TerapiaViewModel>>(_repository.GetAll().Select(t => t.Terapeutas.Where(tr => tr.Id == idTerapeuta)).ToList());
         }
 
         public IEnumerable<TerapiaViewModel> BuscarPorNome(string nome)

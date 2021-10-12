@@ -1,0 +1,214 @@
+﻿@model VedaSystem.Application.ViewModels.DepoimentoViewModel
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <base href="../" />
+
+    <title>Depoimento</title>
+
+    <!-- include common vendor stylesheets & fontawesome -->
+    <!-- include vendor stylesheets used in "Basic Elements" page. see "/views//pages/partials/form-basic/vendor-stylesheets.hbs" -->
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/nouislider/distribute/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/ion-rangeslider/css/ion.rangeSlider.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/tiny-date-picker.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/date-range-picker.css">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace-font.css">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace.css">
+
+    <link rel="icon" type="image/png" href="~/lib/ace-v3.1.1/assets/favicon.png" />
+</head>
+<body>
+    <di1v class="page-content container container-plus">
+        <div class="card acard mt-2 mt-lg-3">
+            <div class="card-header">
+                <h3 class="card-title text-125 text-primary-d2">
+                    <i class="far fa-edit text-dark-l3 mr-1"></i>
+                    Registrar Depoimento
+                </h3>
+            </div>
+
+            <div class="card-body px-3 pb-1">
+                <form asp-action="Create" class="mt-lg-3" autocomplete="off" enctype="multipart/form-data">
+
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                            <label asp-for="Nome" for="id-form-field-1" class="mb-0">
+                            </label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="Nome" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                            <label asp-for="Titulo" for="id-form-field-1" class="mb-0">
+                            </label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="Titulo" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
+                            <span asp-validation-for="Titulo" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                            <label asp-for="QuantidadeEstrelas" for="id-form-field-1" class="mb-0">
+                            </label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <i id="star-one"  class="fa fa-star text-grey-l3" onclick="SetarEstrelas(this.id)"></i>
+                            <i id="star-two"  class="fa fa-star text-grey-l3" onclick="SetarEstrelas(this.id)"></i>
+                            <i id="star-tree" class="fa fa-star text-grey-l3" onclick="SetarEstrelas(this.id)"></i>
+                            <i id="star-four" class="fa fa-star text-grey-l3" onclick="SetarEstrelas(this.id)"></i>
+                            <i id="star-five" class="fa fa-star text-grey-l3" onclick="SetarEstrelas(this.id)"></i>
+                            @Html.HiddenFor(a=>a.QuantidadeEstrelas, new { id="star-note"})
+                            <span asp-validation-for="QuantidadeEstrelas" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                            <label asp-for="Avaliacao" for="id-form-field-1" class="mb-0">
+                            </label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <textarea type="text" asp-for="Avaliacao" class="form-control col-sm-8 col-md-6" id="id-form-field-1" ></textarea>
+                            <span asp-validation-for="Avaliacao" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 border-t-1 bgc-secondary-l4 brc-secondary-l2 py-35 mx-n25">
+                        <div class="offset-md-3 col-md-9 text-nowrap">
+                            <button class="btn btn-info btn-bold px-4" type="submit">
+                                <i class="fa fa-check mr-1"></i>
+                                Enviar
+                            </button>
+
+                            <button onclick="apagarCampos" class="btn btn-outline-lightgrey btn-bgc-white btn-bold ml-2 px-4" type="reset">
+                                <i class="fa fa-undo mr-1"></i>
+                                Apagar Tudo
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.card-body -->
+        </div><!-- /.card -->
+    </di1v>
+
+    <footer class="footer d-none d-sm-block">
+        <div class="footer-inner bgc-white-tp1">
+            <div class="pt-3 border-none border-t-3 brc-grey-l2 border-double">
+                <span class="text-primary-m1 font-bolder text-120">Veda</span>
+                <span class="text-grey">Application &copy; 2021</span>
+
+                <span class="mx-3 action-buttons">
+                    <a href="#" class="text-blue-m2 text-150"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#" class="text-blue-d2 text-150"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-orange-d1 text-150"><i class="fa fa-rss-square"></i></a>
+                </span>
+            </div>
+        </div><!-- .footer-inner -->
+        <!-- `scroll to top` button inside footer (for example when in boxed layout) -->
+        <div class="footer-tools">
+            <a href="#" class="btn-scroll-up btn btn-dark mb-2 mr-2">
+                <i class="fa fa-angle-double-up mx-2px text-95"></i>
+            </a>
+        </div>
+    </footer>
+
+
+
+    <!-- footer toolbox for mobile view -->
+    <footer class="d-sm-none footer footer-sm footer-fixed">
+        <div class="footer-inner">
+            <div class="btn-group d-flex h-100 mx-2 border-x-1 border-t-2 brc-primary-m3 bgc-white-tp1 radius-t-1 shadow">
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0" data-toggle="modal" data-target="#id-ace-settings-modal">
+                    <i class="fas fa-sliders-h text-blue-m1 text-120"></i>
+                </button>
+
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0">
+                    <i class="fa fa-plus-circle text-green-m1 text-120"></i>
+                </button>
+
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle navbar search">
+                    <i class="fa fa-search text-orange text-120"></i>
+                </button>
+
+                <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0 mr-0">
+                    <span class="pos-rel">
+                        <i class="fa fa-bell text-purple-m1 text-120"></i>
+                        <span class="badge badge-dot bgc-red position-tr mt-n1 mr-n2px"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/autosize/dist/autosize.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap-maxlength/dist/bootstrap-maxlength.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/inputmask/dist/jquery.inputmask.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/nouislider/distribute/nouislider.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/ion-rangeslider/js/ion.rangeSlider.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/dist/date-range-picker.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/moment/moment.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/es6-object-assign/dist/object-assign-auto.js"></script>
+    <script src="~/lib/ace-v3.1.1/node_modules/jaames/iro/dist/iro.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/node_modules/jquery-knob/dist/jquery.knob.min.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/dist/js/ace.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/app/browser/demo.js"></script>
+
+    <script src="~/lib/ace-v3.1.1/views/pages/form-basic/page-script.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#form-field-mask-2").inputmask("(99)9999-9999")
+            $("#form-field-mask-cel-2").inputmask("(99)99999-9999")
+            $("#id-form-field-cep-1").inputmask("99999-999")
+            $("#id-form-field-cpf-1").inputmask("999.999.999-99")
+            $("#id-form-field-cnpj-1").inputmask("99.999.999/9999-99")
+            $("#id-form-field-date-1").inputmask("99/99/9999")
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

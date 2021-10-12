@@ -1,0 +1,39 @@
+﻿@model IEnumerable<VedaSystem.Application.ViewModels.DepoimentoViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="col-12 col-md-4 mb-2 mb-md-0 minh-100" data-aos="fade-up" data-aos-delay="50">
+        <div class="text-center bgc-white p-45 radius-1 shadow-md minh-100 d-flex flex-column">
+            <div class="mt-md-n2 mb-3">
+                <img alt="Customer avatar" src="assets/image/avatar/avatar1.jpg" class="mt-md-n5 radius-round border-2 brc-default-m1 p-2px shadow-md" />
+            </div>
+            <h4 class="mb-15">
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </h4>
+            <div>
+                @{
+                    var qtdResto = 5 - item.QuantidadeEstrelas;
+                }
+
+                @for (var i = 0; i < item.QuantidadeEstrelas; i++)
+                {
+                    <i class="fa fa-star text-orange"></i>
+                }
+
+                @if (qtdResto > 0)
+                {
+                    for (var i = 0; i < qtdResto; i++)
+                    {
+                        <i class="fa fa-star text-grey-l3"></i>
+                    }
+                }
+            </div>
+            <p class="mt-2 text-dark-tp3 text-95">
+                @Html.DisplayFor(modelItem => item.Avaliacao)
+            </p>
+            <p class="text-600 mb-0 mt-auto">
+                @Html.DisplayFor(modelItem => item.Nome)
+            </p>
+        </div>
+    </div><!-- /.col -->
+}

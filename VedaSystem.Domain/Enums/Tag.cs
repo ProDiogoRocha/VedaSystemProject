@@ -3,6 +3,7 @@
     public enum Tag
     {
         Urgente = 1,
-        Importante = 2
+        Importante = 2,
+        Normal = 3
     }
 }

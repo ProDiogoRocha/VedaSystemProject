@@ -48,12 +48,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                   , Erro: e.Message
                   , Excecao: e.ToString());
             }
-            _log.RegistrarLog
-               (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("BuscarPorIdTerapeuta").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("BuscarPorIdTerapeuta").Name}"
-                   , ObjetoJson: JsonConvert.SerializeObject(pacientes)
-               );
+           
             return pacientes;
         }
 
@@ -95,6 +90,24 @@ namespace VedaSystem.Infra.Data.Repositorys
                    , ObjetoJson: JsonConvert.SerializeObject(pacientes)
                );
             return pacientes;
+        }
+
+        public override void Remove(Paciente p)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == p.Id);
+                base.Remove(p);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Remove"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Remove"
+                   , ObjetoJson: JsonConvert.SerializeObject(p)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
         }
     }
 }

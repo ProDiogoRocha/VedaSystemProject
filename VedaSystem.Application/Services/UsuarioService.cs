@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using VedaSystem.Application.Interfaces;
 using VedaSystem.Application.Utils;
 using VedaSystem.Application.ViewModels;
 using VedaSystem.Domain.Interfaces;
 using VedaSystem.Domain.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace VedaSystem.Application.Services
 {
@@ -83,7 +83,7 @@ namespace VedaSystem.Application.Services
             usuario.Senha = "";
             usuario.ConfirmeSenha = "";
             usuario.GetTipoUsuarioEnum();
-            usuario.TiposUsuario = new SelectList(listaDeTipoDeUsuarios, "Value","Text", selected).ToList();
+            usuario.TiposUsuario = new SelectList(listaDeTipoDeUsuarios, "Value", "Text", selected).ToList();
 
             return usuario;
         }
@@ -96,73 +96,66 @@ namespace VedaSystem.Application.Services
         public override void Add(UsuarioViewModel entity)
         {
             var user = new ApplicationUser { UserName = entity.NomeDeUsuario, Email = entity.Email };
-
             var result = _userManager.CreateAsync(user, entity.Senha).Result;
-
-            entity.GetTipoUsuarioText();
-
             if (result.Succeeded)
             {
-                var applicationRole = _roleManager.FindByNameAsync(entity.TipoUsuarioName);
+                var applicationRole = _roleManager.FindByNameAsync(entity.RetornaPerfil());
+
                 if (applicationRole != null)
                 {
                     IdentityResult roleResult = _userManager.AddToRoleAsync(user, applicationRole.Result.Name).Result;
                 }
 
-                _userManager.Dispose();
-                _roleManager.Dispose();
-
                 entity.Id = Guid.Parse(user.Id);
+                Cripto<UsuarioViewModel>.CriptografarDadosSigilosos(entity);
+            }
 
-                entity.GetTipoUsuarioEnum();
-                entity = Cripto<UsuarioViewModel>.CriptografarDadosSigilosos(entity);
+            Usuario usuario = null;
 
-                Usuario usuario = null;
+            _log.RegistrarLog
+            (
+                  Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Add").Name}"
+                , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                , ObjetoJson: JsonConvert.SerializeObject(entity)
+            );
 
+            try
+            {
+                usuario = new Usuario()
+                {
+                    Id = entity.Id,
+                    Email = entity.Email,
+                    Endereco = entity.Endereco,
+                    Senha = entity.Senha,
+                    ConfirmeSenha = entity.ConfirmeSenha,
+                    DataCadastro = entity.DataCadastro,
+                    DataNascimento = entity.DataNascimento,
+                    Foto = entity.Foto,
+                    NomeDeUsuario = entity.NomeDeUsuario,
+                    TipoUsuario = entity.TipoUsuario
+                };
+            }
+            catch (Exception e)
+            {
                 _log.RegistrarLog
+                 (
+                     Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Add").Name}"
+                    , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                   , ObjetoJson: JsonConvert.SerializeObject(entity)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+
+            _usuarioRepository.Add(usuario);
+
+            _log.RegistrarLog
                 (
-                      Informacao: $@"2º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Add").Name}"
+                      Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Add").Name}"
                     , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
                     , ObjetoJson: JsonConvert.SerializeObject(entity)
                 );
-
-                try
-                {
-                    usuario = new Usuario() 
-                    {
-                        Id = entity.Id,
-                        Email = entity.Email,
-                        Endereco = entity.Endereco,
-                        Senha = entity.Senha,
-                        ConfirmeSenha = entity.ConfirmeSenha,
-                        DataCadastro = entity.DataCadastro,
-                        DataNascimento = entity.DataNascimento,
-                        Foto = entity.Foto,
-                        NomeDeUsuario = entity.NomeDeUsuario,
-                        TipoUsuario = entity.TipoUsuario
-                    };
-                }
-                catch (Exception e)
-                {
-                    _log.RegistrarLog
-                     (
-                         Informacao: $@"2º Passo | {this.GetType().Name}, AutoMapper {this.GetType().GetMethod("Add").Name}"
-                        , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
-                       , ObjetoJson: JsonConvert.SerializeObject(entity)
-                       , Erro: e.Message
-                       , Excecao: e.ToString());
-                }
-
-                _usuarioRepository.Add(usuario);
-
-                _log.RegistrarLog
-                    (
-                          Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Add").Name}"
-                        , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
-                        , ObjetoJson: JsonConvert.SerializeObject(usuario)
-                    );
-            }
         }
+
 
         public override void Update(UsuarioViewModel entity)
         {
@@ -207,3 +200,4 @@ namespace VedaSystem.Application.Services
         }
     }
 }
+

@@ -14,5 +14,6 @@ namespace VedaSystem.Domain.Interfaces
         void Submit(By by);
         void CloseBrowser();
         IEnumerable<Tradutor> GetPorTexto(string texto);
+        void SetText(By byFather, By byChildren, string text);
     }
 }

@@ -31,7 +31,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
-                materialTerapias = DbSet.Where(mt => mt.TerapiaId == IdTerapia).Select(mt => mt).ToList();
+                materialTerapias = DbSet.Where(mt => mt.TerapiaId == IdTerapia && mt.Ativo == true).Select(mt => mt).ToList();
             }
             catch (Exception e)
             {
@@ -50,6 +50,86 @@ namespace VedaSystem.Infra.Data.Repositorys
                   , ObjetoJson: JsonConvert.SerializeObject(materialTerapias)
               );
             return materialTerapias;
+        }
+
+        public override IEnumerable<MaterialTerapia> GetAll()
+        {
+            return DbSet.Where(mt => mt.Ativo == true).ToList();
+        }
+
+        public override MaterialTerapia GetById(Guid id, bool ativo)
+        {
+            if (ativo)
+            {
+                return DbSet.Where(mt => mt.Id == id && mt.Ativo == true).FirstOrDefault();
+            }
+            else
+            {
+                return DbSet.Find(id);
+            }
+        }
+
+        public override void Add(MaterialTerapia t)
+        {
+            try
+            {
+                int Ativo = t.Ativo == true ? 1 : 0;
+
+                Db.Database.ExecuteSqlRaw($@"INSERT INTO MaterialTerapias (Id, EstoqueMaterialId, TerapiaId, Quantidade, Ativo)  
+                         VALUES ('{t.Id}', '{t.EstoqueMaterialId}', '{t.TerapiaId}', {t.Quantidade}, {Ativo})");
+
+                //DbSet.FromSqlRaw
+                //    (
+                //        $@"INSERT INTO MaterialTerapias (Id, EstoqueMaterialId, TerapiaId, Quantidade, Ativo)  
+                //         VALUES ('{t.Id}', '{t.EstoqueMaterialId}', '{t.TerapiaId}', {t.Quantidade}, {Ativo})"
+                //    );
+                //Db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity {this.GetType().GetMethod("Add").Name}"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/{this.GetType().GetMethod("Add").Name}"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+        }
+
+        public override void Update(MaterialTerapia t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Update(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Update"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Update"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+        }
+
+        public override void Remove(MaterialTerapia t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Remove(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Update"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Update"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
         }
     }
 }

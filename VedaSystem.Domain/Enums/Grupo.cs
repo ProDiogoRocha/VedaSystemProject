@@ -4,6 +4,8 @@
     {
         Trabalho = 1,
         Pacientes = 2,
-        Duvidas = 3
+        Duvidas = 3,
+        Geral = 4
+
     }
 }

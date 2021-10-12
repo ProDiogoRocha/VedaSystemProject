@@ -1,6 +1,6 @@
 ﻿@model VedaSystem.Application.ViewModels.TerapeutaViewModel
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -13,18 +13,12 @@
     <!-- include vendor stylesheets used in "Basic Elements" page. see "/views//pages/partials/form-basic/vendor-stylesheets.hbs" -->
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/nouislider/distribute/nouislider.min.css">
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/ion-rangeslider/css/ion.rangeSlider.min.css">
-
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/tiny-date-picker.css">
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/tiny-date-picker/date-range-picker.css">
-
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css">
-
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
-
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace-font.css">
-    
     <link rel="stylesheet" type="text/css" href="~/lib/ace-v3.1.1/dist/css/ace.css">
-
     <link rel="icon" type="image/png" href="~/lib/ace-v3.1.1/assets/favicon.png" />
 </head>
 <body>
@@ -38,41 +32,41 @@
             </div>
 
             <div class="card-body px-3 pb-1">
-                <form asp-action="Create" class="mt-lg-3" autocomplete="off" enctype="multipart/form-data">
+                <form id="form-create-terapeuta" asp-action="Create" class="mt-lg-3" autocomplete="off" enctype="multipart/form-data">
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="NomeCompleto" for="id-form-field-1" class="mb-0">
+                            <label asp-for="NomeCompleto" for="nome_completo" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="NomeCompleto" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                            <input type="text" asp-for="NomeCompleto" class="form-control col-sm-8 col-md-6" id="nome_completo" />
+                            <span asp-validation-for="NomeCompleto" class="text-danger" id="danger_nome_completo"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="NomeDeUsuario" for="id-form-field-1" class="mb-0">
+                            <label asp-for="NomeDeUsuario" for="nome_usuario" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="NomeDeUsuario" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="NomeDeUsuario" class="text-danger"></span>
+                            <input type="text" asp-for="NomeDeUsuario" class="form-control col-sm-8 col-md-6" id="nome_usuario" />
+                            <span asp-validation-for="NomeDeUsuario" class="text-danger" id="danger_nome_usuario"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Email" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Email" for="email" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="email" asp-for="Email" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <input type="email" asp-for="Email" class="form-control col-sm-8 col-md-6" id="email" />
+                            <span asp-validation-for="Email" class="text-danger" id="danger_email"></span>
                         </div>
                     </div>
 
@@ -89,32 +83,32 @@
                                     <i class="fa fa-eye-slash text-90 d-n-active w-3"></i>
                                     <i class="fa fa-eye text-90 d-active w-3"></i>
                                 </a>
-                                <span asp-validation-for="Senha" class="text-danger"></span>
+                                <span asp-validation-for="Senha" class="text-danger" id="danger_id-form-field-password-toggle"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="ConfirmeSenha" for="id-form-field-password-toggle" class="mb-0">
+                            <label asp-for="ConfirmeSenha" for="id-form-field-confirm-password-toggle" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
                             <div class="d-inline-flex align-items-center">
-                                <input type="password" asp-for="ConfirmeSenha" class="form-control form-control-lg pr-5" placeholder="Senha" value="" spellcheck="false" id="id-form-field-password-toggle" />
+                                <input type="password" asp-for="ConfirmeSenha" class="form-control form-control-lg pr-5" placeholder="Senha" value="" spellcheck="false" id="id-form-field-confirm-password-toggle" />
                                 <a href="#" id="toggle-password" class="btn btn-sm border-0 btn-white btn-h-light-orange btn-a-light-orange text-125 ml-n5 no-underline radius-1 d-style">
                                     <i class="fa fa-eye-slash text-90 d-n-active w-3"></i>
                                     <i class="fa fa-eye text-90 d-active w-3"></i>
                                 </a>
-                                <span asp-validation-for="ConfirmeSenha" class="text-danger"></span>
+                                <span asp-validation-for="ConfirmeSenha" class="text-danger" id="danger_id-form-field-confirm-password-toggle"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Telefone" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Telefone" for="telefone" class="mb-0">
                             </label>
                         </div>
 
@@ -123,15 +117,15 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-phone"></i></span>
                                 </div>
-                                <input type="text" asp-for="Telefone" class="form-control form-control-lg" id="form-field-mask-2" />
+                                <input type="text" asp-for="Telefone" class="form-control form-control-lg" id="telefone" />
                             </div>
-                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                            <span asp-validation-for="Telefone" class="text-danger" id="danger_telefone"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Celular" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Celular" for="celular" class="mb-0">
                             </label>
                         </div>
 
@@ -140,159 +134,159 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-mobile"></i></span>
                                 </div>
-                                <input type="text" asp-for="Celular" class="form-control form-control-lg" id="form-field-mask-cel-2" />
+                                <input type="text" asp-for="Celular" class="form-control form-control-lg" id="celular" />
                                 <label class="mt-1 mt-sm-0 ml-sm-3">
-                                    <input type="checkbox" asp-for="WhatsApp" class="ace-switch input-lg ace-switch-yesno bgc-purple-d1 text-grey-m2" checked="">
+                                    <input type="checkbox" asp-for="WhatsApp" class="ace-switch input-lg ace-switch-yesno bgc-purple-d1 text-grey-m2" checked="" id="whatsApp">
                                 </label>
-                                <label asp-for="WhatsApp" for="id-form-field-1" class="mb-0"></label>
+                                <label asp-for="WhatsApp" for="celular" class="mb-0"></label>
                             </div>
-                            <span asp-validation-for="Celular" class="text-danger"></span>
+                            <span asp-validation-for="Celular" class="text-danger" id="danger_celular"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Site" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Site" for="site" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Site" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="Site" class="text-danger"></span>
+                            <input type="text" asp-for="Site" class="form-control col-sm-8 col-md-6" id="site" />
+                            <span asp-validation-for="Site" class="text-danger" id="danger_site"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Endereco" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Endereco" for="endereco" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Endereco" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="Endereco" class="text-danger"></span>
+                            <input type="text" asp-for="Endereco" class="form-control col-sm-8 col-md-6" id="endereco" />
+                            <span asp-validation-for="Endereco" class="text-danger" id="danger_endereco"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Cep" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Cep" for="cep" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-4">
-                            <input type="text" asp-for="Cep" class="form-control col-sm-8 col-md-6" id="id-form-field-cep-1" />
-                            <span asp-validation-for="Cep" class="text-danger"></span>
+                            <input type="text" asp-for="Cep" class="form-control col-sm-8 col-md-6" id="cep" />
+                            <span asp-validation-for="Cep" class="text-danger" id="danger_cep"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Estado" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Estado" for="estado" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Estado" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="Estado" class="text-danger"></span>
+                            <input type="text" asp-for="Estado" class="form-control col-sm-8 col-md-6" id="estado" />
+                            <span asp-validation-for="Estado" class="text-danger" id="danger_estado"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Cidade" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Cidade" for="cidade" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Cidade" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="Cidade" class="text-danger"></span>
+                            <input type="text" asp-for="Cidade" class="form-control col-sm-8 col-md-6" id="cidade" />
+                            <span asp-validation-for="Cidade" class="text-danger" id="danger_cidade"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Bairro" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Bairro" for="bairro" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Bairro" class="form-control col-sm-8 col-md-6" id="id-form-field-1" />
-                            <span asp-validation-for="Bairro" class="text-danger"></span>
+                            <input type="text" asp-for="Bairro" class="form-control col-sm-8 col-md-6" id="bairro" />
+                            <span asp-validation-for="Bairro" class="text-danger" id="danger_bairro"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="CPF" for="id-form-field-1" class="mb-0">
+                            <label asp-for="CPF" for="id-form-field-cpf-1" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-4">
                             <input type="text" asp-for="CPF" class="form-control col-sm-8 col-md-6" id="id-form-field-cpf-1" />
-                            <span asp-validation-for="CPF" class="text-danger"></span>
+                            <span asp-validation-for="CPF" class="text-danger" id="danger_id-form-field-cpf-1"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="CNPJ" for="id-form-field-1" class="mb-0">
+                            <label asp-for="CNPJ" for="id-form-field-cnpj-1" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-4">
                             <input type="text" asp-for="CNPJ" class="form-control col-sm-8 col-md-6" id="id-form-field-cnpj-1" />
-                            <span asp-validation-for="CNPJ" class="text-danger"></span>
+                            <span asp-validation-for="CNPJ" class="text-danger" id="danger_id-form-field-cnpj-1"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="DataNascimento" for="id-form-field-1" class="mb-0">
+                            <label asp-for="DataNascimento" for="data_nascimento" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-5">
-                            <input type="date" asp-for="DataNascimento" class="form-control col-sm-8 col-md-6" id="id-form-field-date-1" />
-                            <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                            <input type="date" asp-for="DataNascimento" class="form-control col-sm-8 col-md-6" id="data_nascimento" />
+                            <span asp-validation-for="DataNascimento" class="text-danger" id="danger_data_nascimento"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="ImagemUpload" for="id-form-field-1" class="mb-0">
+                            <label asp-for="ImagemUpload" for="imagem_upload" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-6">
-                            <input type="file" asp-for="ImagemUpload" class="form-control col-sm-8 col-md-6" id="id-form-field-date-1" />
-                            <span asp-validation-for="ImagemUpload" class="text-danger"></span>
+                            <input type="file" asp-for="ImagemUpload" class="form-control col-sm-8 col-md-6" id="imagem_upload" />
+                            <span asp-validation-for="ImagemUpload" class="text-danger" id="danger_imagem_upload"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Apresentacao" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Apresentacao" for="apresentacao" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Apresentacao" class="form-control col-sm-8 col-md-6" id="id-form-field-date-1" />
-                            <span asp-validation-for="Apresentacao" class="text-danger"></span>
+                            <input type="text" asp-for="Apresentacao" class="form-control col-sm-8 col-md-6" id="apresentacao" />
+                            <span asp-validation-for="Apresentacao" class="text-danger" id="danger_apresentacao"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Observacoes" for="id-form-field-1" class="mb-0">
+                            <label asp-for="Observacoes" for="observacoes" class="mb-0">
                             </label>
                         </div>
 
                         <div class="col-sm-9">
-                            <input type="text" asp-for="Observacoes" class="form-control col-sm-8 col-md-6" id="id-form-field-date-1" />
-                            <span asp-validation-for="Observacoes" class="text-danger"></span>
+                            <input type="text" asp-for="Observacoes" class="form-control col-sm-8 col-md-6" id="observacoes" />
+                            <span asp-validation-for="Observacoes" class="text-danger" id="danger_observacoes"></span>
                         </div>
                     </div>
 
                     <div class="mt-5 border-t-1 bgc-secondary-l4 brc-secondary-l2 py-35 mx-n25">
                         <div class="offset-md-3 col-md-9 text-nowrap">
-                            <button class="btn btn-info btn-bold px-4" type="submit">
+                            <button class="btn btn-info btn-bold px-4" type="button" onclick="createTerapeuta()">
                                 <i class="fa fa-check mr-1"></i>
                                 Enviar
                             </button>
@@ -383,17 +377,7 @@
     <script src="~/lib/ace-v3.1.1/app/browser/demo.js"></script>
 
     <script src="~/lib/ace-v3.1.1/views/pages/form-basic/page-script.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $("#form-field-mask-2").inputmask("(99)9999-9999")
-            $("#form-field-mask-cel-2").inputmask("(99)99999-9999")
-            $("#id-form-field-cep-1").inputmask("99999-999")
-            $("#id-form-field-cpf-1").inputmask("999.999.999-99")
-            $("#id-form-field-cnpj-1").inputmask("99.999.999/9999-99")
-            $("#id-form-field-date-1").inputmask("99/99/9999")
-        });
-    </script>
+    
 </body>
 
 </html>

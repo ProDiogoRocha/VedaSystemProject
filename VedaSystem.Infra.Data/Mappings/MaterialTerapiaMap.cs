@@ -12,8 +12,12 @@ namespace VedaSystem.Infra.Data.Mappings
 
             builder.Property(mt => mt.EstoqueMaterialId);
 
+            builder.Property(mt => mt.TerapiaId);
+
             builder.Property(mt => mt.Quantidade)
                     .IsRequired();
+
+            builder.Property(mt => mt.Ativo);
         }
     }
 }

@@ -89,8 +89,7 @@ namespace VedaSystem.Infra.Data.Mappings
             builder.HasMany(t => t.Pacientes)
               .WithMany(p => p.Terapeutas);
 
-            builder.Property(t => t.Logo)
-                .IsRequired();
+            builder.Property(t => t.Logo);
 
             builder.HasMany(t => t.Terapias)
                 .WithMany(t => t.Terapeutas)

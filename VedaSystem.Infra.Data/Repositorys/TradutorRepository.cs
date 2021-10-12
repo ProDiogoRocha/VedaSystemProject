@@ -15,25 +15,34 @@ namespace VedaSystem.Infra.Data.Repositorys
     public class TradutorRepository : Repository<Tradutor>, ITradutorRepository
     {
         private string _urlDriver = "";
-        private IWebDriver _webDriver;
+        private string _urlSite = "https://translate.google.com.br/?hl=pt-BR";
+
+        private IWebDriver _webDriver = null;
         protected readonly TradutorContext Db;
         protected readonly DbSet<Tradutor> DbSet;
 
-        public TradutorRepository(TradutorContext context, bool InstanciarBrowser = false) : base(context)
+        public TradutorRepository(TradutorContext context, ILogRepository log) : base(context, log)
         {
             Db = context;
             DbSet = Db.Set<Tradutor>();
+        }
 
-            Browser browser = Browser.Chrome;
-
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", true, true);
-
-            IConfiguration configuration = builder.Build();
-
-            if (InstanciarBrowser)
+        private void GetIntanciaWebDriver(Browser browser)
+        {
+            if (_webDriver == null)
             {
-                _urlDriver = browser == Browser.Chrome ? configuration.GetSection("Navegadores").GetSection("URLChrome").Value : configuration.GetSection("Navegadores").GetSection("URLFirefox").Value;
+                switch (browser)
+                {
+                    case Browser.Chrome:
+                        _urlDriver = "C:\\Users\\prodi\\Documents\\Projetos\\VedaSystemProject\\SeleniumDrivers\\Chrome";
+                        break;
+                    case Browser.Firefox:
+                        _urlDriver = "C:\\Users\\prodi\\Documents\\Projetos\\VedaSystemProject\\SeleniumDrivers\\Firefox";
+                        break;
+                    default:
+                        _urlDriver = "C:\\Users\\prodi\\Documents\\Projetos\\VedaSystemProject\\SeleniumDrivers\\PhantomJS";
+                        break;
+                }
                 _webDriver = Db.CreateWebDriver(browser, _urlDriver);
             }
         }
@@ -47,6 +56,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
+                GetIntanciaWebDriver(Browser.Chrome);
                 _webDriver.Quit();
                 _webDriver = null;
             }
@@ -75,7 +85,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                        Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("GetPorTexto").Name}"
                      , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetPorTexto").Name}"
                      , ObjetoJson: JsonConvert.SerializeObject(texto)
-                 ); 
+                 );
 
             try
             {
@@ -113,6 +123,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
+                GetIntanciaWebDriver(Browser.Chrome);
                 webElement = _webDriver.FindElement(by);
             }
             catch (Exception e)
@@ -146,6 +157,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
+                GetIntanciaWebDriver(Browser.Chrome);
                 webElements = _webDriver.FindElement(byFather).FindElements(byChildrens);
             }
             catch (Exception e)
@@ -161,7 +173,6 @@ namespace VedaSystem.Infra.Data.Repositorys
                (
                      Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("GetTexts").Name}"
                    , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetTexts").Name}"
-                   , ObjetoJson: JsonConvert.SerializeObject(webElements)
                );
             return webElements;
         }
@@ -176,15 +187,16 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
+                GetIntanciaWebDriver(Browser.Chrome);
                 _webDriver.Manage().Timeouts().PageLoad = timeToWait;
-                _webDriver.Navigate().GoToUrl(_urlDriver);
+                _webDriver.Navigate().GoToUrl(_urlSite);
             }
             catch (Exception e)
             {
                 _log.RegistrarLog(
                   Informacao: $@"3º Passo | {this.GetType().Name}, Selenium {this.GetType().GetMethod("LoadPage").Name}"
                 , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("LoadPage").Name}"
-                , ObjetoJson: JsonConvert.SerializeObject(_urlDriver)
+                , ObjetoJson: JsonConvert.SerializeObject(_urlSite)
                 , Erro: e.Message
                 , Excecao: e.ToString());
             }
@@ -206,6 +218,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
+                GetIntanciaWebDriver(Browser.Chrome);
                 IWebElement webElement = _webDriver.FindElement(by);
                 webElement.SendKeys(text);
             }
@@ -225,6 +238,26 @@ namespace VedaSystem.Infra.Data.Repositorys
                );
         }
 
+        public void SetText(By byFather, By byChildren, string text)
+        {
+            try
+            {
+                GetIntanciaWebDriver(Browser.Chrome);
+                var webElement = _webDriver.FindElement(byFather).FindElement(byChildren);
+                webElement.SendKeys(text);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                  Informacao: $@"3º Passo | {this.GetType().Name}, Selenium {this.GetType().GetMethod("SetText").Name}"
+                , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("SetText").Name}"
+                , ObjetoJson: JsonConvert.SerializeObject(byFather) + JsonConvert.SerializeObject(byChildren) + JsonConvert.SerializeObject(text)
+                , Erro: e.Message
+                , Excecao: e.ToString());
+            }
+           
+        }
+
         public void Submit(By by)
         {
             _log.RegistrarLog
@@ -235,6 +268,7 @@ namespace VedaSystem.Infra.Data.Repositorys
                  );
             try
             {
+                GetIntanciaWebDriver(Browser.Chrome);
                 IWebElement webElement = _webDriver.FindElement(by);
                 webElement.Submit();
             }
@@ -254,6 +288,24 @@ namespace VedaSystem.Infra.Data.Repositorys
                    , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Submit").Name}"
                    , ObjetoJson: JsonConvert.SerializeObject(by)
                );
+        }
+
+        public override void Remove(Tradutor t)
+        {
+            try
+            {
+                base.DetachLocal(_ => _.Id == t.Id);
+                base.Remove(t);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | Tradutor, Entity Remove"
+                   , Repositorio_Metodo: $@"Tradutor/Remove"
+                   , ObjetoJson: JsonConvert.SerializeObject(t)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
         }
     }
 }

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<VedaSystem.Application.ViewModels.EmailMessageViewModel>
+@using VedaSystem.Web.Extensions
+@using Newtonsoft.Json
+@foreach (var item in Model)
+{
+    <hr class="brc-black-tp10 my-0" />
+
+    <div  class="d-flex align-items-start bgc-h-primary-l4 px-2 px-md-3 py-25 radius-2px d-style pos-rel" onclick="OpenMessage('@item.TerapeutaId', '@item.Id')">
+        <label class="mb-0 message-select-btn">
+            <input type="checkbox" class="input-sm" />
+        </label>
+        @if (item.Benchmark)
+        {
+            <a class="d-none d-md-block ml-md-3 message-star-btn" onclick="markBench(this, '@item.TerapeutaId', '@item.Id')">
+                <i class="fa fa-star text-orange" ></i>
+            </a>
+
+            <a class="d-md-none position-br mr-1 mb-2px message-star-btn" onclick="markBench(this, '@item.TerapeutaId', '@item.Id')">
+                <i class="fa fa-star text-orange" ></i>
+            </a>
+        }
+        else
+        {
+            <a class="d-none d-md-block ml-md-3 message-star-btn" onclick="markBench(this, '@item.TerapeutaId', '@item.Id')">
+                <i class="fa fa-star text-grey-l3"></i>
+            </a>
+
+            <a class="d-md-none position-br mr-1 mb-2px message-star-btn" onclick="markBench(this, '@item.TerapeutaId', '@item.Id')">
+                <i class="fa fa-star text-grey-l3" ></i>
+            </a>
+        }
+        @{
+            var bcg = item.CorRadius.ObterDescricao();
+            var naoLido = "";
+            if (!item.Lido)
+            {
+                naoLido = "text-600";
+            }
+        }
+        <div class="col-auto px-0 ml-2 ml-md-3 w-5 h-5 @bcg text-white text-90 @naoLido text-center pt-15 radius-round border-2 brc-white">
+            @Html.DisplayFor(modelItem => item.PrimeiraLetraDoNome)
+        </div>
+
+        <div class="ml-3 d-flex flex-column flex-lg-row align-items-lg-center">
+            <div class="message-user mb-1 mb-lg-0 col-auto px-0 text-95 @naoLido text-dark-m2">
+                @Html.DisplayFor(modelItem => item.De)
+            </div>
+            <div class="message-text ml-lg-3 ml-lg-5 pr-1 pr-lg-0 text-90 @naoLido text-dark-m3 pos-rel">
+                @if (item.Tag == VedaSystem.Domain.Enums.Tag.Urgente)
+                {
+                    <span class="badge bgc-red-l2 text-danger-d2 mr-1 radius-1">Urgente</span>
+                }
+                @if (item.Tag == VedaSystem.Domain.Enums.Tag.Importante)
+                {
+                    <span class="badge bgc-orange-l2 text-dark-m3 mr-1 radius-1">Importante</span>
+                }
+
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </div>
+        </div>
+
+        <div class="message-time d-none d-lg-flex align-items-center ml-auto pl-2 col-auto text-nowrap pr-0 pl-1 text-90 @naoLido text-dark-m1">
+            @if (item.ExistemAnexos)
+            {
+                <i class="w-3 fa fa-paperclip ml-n35 text-blue-m1"></i>
+            }
+            @Html.DisplayFor(modelItem => item.Horario)
+        </div>
+        <div class="position-tr mt-15 w-auto message-time d-flex d-lg-none align-items-center text-nowrap  text-90 @naoLido text-dark-m1">
+            @if (item.ExistemAnexos)
+            {
+                var textColor = "";
+                if (item.Lido)
+                {
+                    textColor = "text-blue-m1";
+                }
+                else
+                {
+                    textColor = "text-grey-l1";
+                }
+
+                <i class="w-2 mr-2px fa fa-paperclip ml-n3 @textColor"></i>
+            }
+            @Html.DisplayFor(modelItem => item.Horario)
+        </div>
+
+        <div class="message-actions position-r mr-1 v-hover p-15 bgc-white-tp1 shadow-sm radius-2px">
+            <a href="#" class="btn btn-tp border-0 btn-text-danger btn-light-danger mr-2px px-2">
+                <i class="fa fa-trash-alt text-danger-m1 w-2"></i>
+            </a>
+            <a href="#" class="btn btn-tp border-0 btn-text-info btn-light-info px-2">
+                <i class="fa fa-reply w-2"></i>
+            </a>
+        </div>
+    </div>
+}

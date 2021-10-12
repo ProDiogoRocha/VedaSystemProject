@@ -1,0 +1,48 @@
+﻿@model IEnumerable<VedaSystem.Application.ViewModels.PrescricaoViewModel>
+
+@foreach (var item in Model)
+{
+    <tr class="d-style bgc-h-default-l4">
+        <td class="td-toggle-details pos-rel">
+            <!-- this empty table cell will show the `+` sign which toggles the hidden cells in responsive (collapsed) mode -->
+            <div class="position-lc h-95 ml-1px border-l-3 brc-purple-m1">
+                <!-- this decorative highlight border will be shown only when table is collapsed (responsive) -->
+            </div>
+        </td>
+        <td class="pl-3 pl-md-4 align-middle pos-rel" onclick="showHideBotaoDeletePrescricao()">
+            <input class="terapeutas-check" type="checkbox" value="@item.Id" />
+
+            <div class="d-n-collapsed position-lc h-95 ml-1px border-l-3 brc-purple-m1">
+                <!-- this decorative highlight border will be shown only when table is in full mode (not collapsed >> .d-n-collapsed) -->
+            </div>
+        </td>
+        <td>
+            <span class="text-105">
+                @Html.DisplayFor(modelItem => item.DataDaPrescricao)
+            </span>
+            <div class="text-95 text-secondary-d1">
+                @Html.DisplayFor(modelItem => item.Terapeuta.NomeCompleto)
+            </div>
+        </td>
+        <td class="text-grey">
+            @Html.DisplayFor(modelItem => item.Paciente.Nome)
+        </td>
+        <td class="text-grey">
+            @Html.DisplayFor(modelItem => item.ValidadeDaPrescricao)
+        </td>
+        <td class="align-middle">
+            <span class="d-none d-lg-inline">
+                <a data-rel="tooltip" data-action="edit" title="Edit" href="javascript:void(0)" onclick="openEditPrescricao('@item.Id')" class="v-hover">
+                    <i class="fa fa-edit text-blue-m1 text-120"></i>
+                </a>
+            </span>
+            <span class="d-lg-none text-nowrap">
+                <a title="Editar" href="javascript:void(0)" onclick="openEditPrescricao('@item.Id')" class="btn btn-outline-info shadow-sm px-4 btn-bgc-white">
+                    <i class="fa fa-pencil-alt mx-1"></i>
+                    <span class="ml-1 d-md-none">Editar</span>
+                </a>
+            </span>
+        </td>
+    </tr>
+}
+

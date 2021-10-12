@@ -8,7 +8,7 @@
             </div>
         </td>
         <td class="pl-3 pl-md-4 align-middle pos-rel">
-            <input type="checkbox" />
+            <input type="checkbox" class="pacientes-check" onclick="showHideBotaoDeletePaciente()" value="@item.Id"/>
             <div class="d-n-collapsed position-lc h-95 ml-1px border-l-3 brc-purple-m1">
             </div>
         </td>
@@ -25,39 +25,32 @@
             @Html.DisplayFor(modelItem => item.Altura)
         </td>
         <td class="text-600 text-grey-d1">
-            @Html.DisplayFor(modelItem => DateTime.Now.Year - item.DataNascimento.Year)
+            @{ 
+                var idade = DateTime.Now.Year - item.DataNascimento.Year;
+            }
+            @idade
         </td>
         <td class="align-middle">
-            <span class="d-none d-lg-inline">
-                <a data-rel="tooltip" data-action="edit" title="Edit" href="javascript:void(0)" onclick="openEdit('@item.Id')" class="v-hover">
-                    <i class="fa fa-edit text-blue-m1 text-120"></i>
-                </a>
-            </span>
-            <span class="d-lg-none text-nowrap">
-                <a title="Edit" href="javascript:void(0)" onclick="openEdit('@item.Id')" class="btn btn-outline-info shadow-sm px-4 btn-bgc-white">
-                    <i class="fa fa-pencil-alt mx-1"></i>
-                    <span class="ml-1 d-md-none">Editar</span>
-                </a>
-            </span>
+            @*<span class="d-none d-lg-inline">
+            <a data-rel="tooltip" data-action="edit" title="Edit" href="javascript:void(0)" onclick="openEditPaciente('@item.Id')" class="v-hover">
+                <i class="fa fa-edit text-blue-m1 text-120"></i>
+            </a>
+        </span>
+        <span class="d-lg-none text-nowrap">
+            <a title="Edit" href="javascript:void(0)" onclick="openEditPaciente('@item.Id')" class="btn btn-outline-info shadow-sm px-4 btn-bgc-white">
+                <i class="fa fa-pencil-alt mx-1"></i>
+                <span class="ml-1 d-md-none">Editar</span>
+            </a>
+        </span>*@
+            <a href="#" id="btn-acoes" aria-haspopup="true" onclick="abrirFecharMenuAcoes()" >
+                <i class="fa fa-ellipsis-h ml-3"></i>
+            </a>
+            <ul id="ul-acoes" style="display:none ;position: absolute; top: 100%; list-style: none; padding-left: 0px; z-index: 1; width: 70px">
+                <li style="position: relative">teste</li>
+                <li style="position: relative">teste</li>
+                <li style="position: relative">teste</li>
+                <li style="position: relative">teste</li>
+            </ul>
         </td>
     </tr>
 }
-<script>
-    function openEdit(id) {
-       $.ajax({
-          url: '@Url.Action("Edit", "Paciente")',
-          type: "GET",
-          data: { id: id},
-          success: function (data) {
-              var retorno = data;
-              if (retorno.view.result === undefined) {
-                  $("#div-principal").html("");
-              } else {
-                  $("#div-principal").html(retorno.view.result);
-              }
-          },
-          error: function (result) {
-          }
-       });
-    }
-</script>

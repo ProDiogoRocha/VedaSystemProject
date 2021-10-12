@@ -4,21 +4,21 @@ namespace VedaSystem.Domain.Enums
 {
     public enum CorRadius
     {
-        [Description("bcg-purple")]
-        bcgPurple = 1,
-        [Description("bcg-blue")]
-        bcgBlue = 2,
-        [Description("bcg-green")]
-        bcgGreen = 3,
-        [Description("bcg-pink")]
-        bcgPink = 4,
-        [Description("bcg-red")]
-        bcgRed = 5,
-        [Description("bcg-secondary")]
-        bcgSecondary = 6,
-        [Description("bcg-warning")]
-        bcgWarning = 7,
-        [Description("bcg-black")]
-        bcgBlack = 8,
+        [Description("bgc-purple")]
+        bgcPurple = 1,
+        [Description("bgc-blue")]
+        bgcBlue = 2,
+        [Description("bgc-green")]
+        bgcGreen = 3,
+        [Description("bgc-pink")]
+        bgcPink = 4,
+        [Description("bgc-red")]
+        bgcRed = 5,
+        [Description("bgc-secondary")]
+        bgcSecondary = 6,
+        [Description("bgc-warning")]
+        bgcWarning = 7,
+        [Description("bgc-black")]
+        bgcBlack = 8,
     }
 }

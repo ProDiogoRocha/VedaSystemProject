@@ -18,9 +18,9 @@ namespace VedaSystem.Infra.Data.Mappings
             builder.Property(t => t.Duracao)
                 .IsRequired();
 
-            builder.HasMany(t => t.Materiais)
-                .WithOne(m => m.TerapiaPrincipal)
-                .HasForeignKey(m => m.TerapiaId);
+            //builder.HasMany(t => t.Materiais)
+            //    .WithOne(m => m.TerapiaPrincipal)
+            //    .HasForeignKey(m => m.TerapiaId);
 
             builder.Property(t => t.Observacao)
                 .HasMaxLength(300);

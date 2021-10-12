@@ -25,7 +25,7 @@ namespace VedaSystem.Infra.Data.Repositorys
             return DbSet.ToList();
         }
 
-        public override Log GetById(Guid id)
+        public override Log GetById(Guid id, bool ativo = true)
         {
             return DbSet.Find(id);
         }

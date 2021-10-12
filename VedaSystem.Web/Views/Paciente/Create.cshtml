@@ -30,123 +30,123 @@
             </div>
 
             <div class="card-body px-3 pb-1">
-                <form asp-action="Create" class="mt-lg-3" autocomplete="off" enctype="multipart/form-data">
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Nome" for="id-form-field-nome" class="mb-0">
-                            </label>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <input type="text" asp-for="Nome" class="form-control col-sm-8 col-md-6" id="id-form-field-nome" />
-                            <span asp-validation-for="Nome" class="text-danger"></span>
-                        </div>
+                @Html.HiddenFor(p=>p.Id, new { id= "id-paciente" })
+                
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="Nome" for="nome" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Email" for="id-form-field-email" class="mb-0">
-                            </label>
-                        </div>
+                    <div class="col-sm-9">
+                        <input type="text" asp-for="Nome" class="form-control col-sm-8 col-md-6" id="nome" />
+                        <span asp-validation-for="Nome" class="text-danger" id="nome-danger"></span>
+                    </div>
+                </div>
 
-                        <div class="col-sm-9">
-                            <input type="text" asp-for="Email" class="form-control col-sm-8 col-md-6" id="id-form-field-email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="Email" for="email" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="DataNascimento" for="id-form-field-date-1" class="mb-0">
-                            </label>
-                        </div>
+                    <div class="col-sm-9">
+                        <input type="text" asp-for="Email" class="form-control col-sm-8 col-md-6" id="email" />
+                        <span asp-validation-for="Email" class="text-danger" id="email-danger"></span>
+                    </div>
+                </div>
 
-                        <div class="col-sm-9">
-                            <input type="date" asp-for="DataNascimento" class="form-control col-sm-8 col-md-6" id="id-form-field-date-1" />
-                            <span asp-validation-for="DataNascimento" class="text-danger"></span>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="DataNascimento" for="dataNascimento" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Telefone" for="form-field-mask-2" class="mb-0">
-                            </label>
-                        </div>
+                    <div class="col-sm-9">
+                        <input type="date" asp-for="DataNascimento" class="form-control col-sm-8 col-md-6" id="dataNascimento"  />
+                        <span asp-validation-for="DataNascimento" class="text-danger" id="dataNascimento-danger"></span>
+                    </div>
+                </div>
 
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                </div>
-                                <input type="text" asp-for="Telefone" class="form-control form-control-lg" id="form-field-mask-2" />
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="Telefone" for="telefone" class="mb-0">
+                        </label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
                             </div>
-                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                            <input type="text" asp-for="Telefone" class="form-control form-control-lg" id="telefone" />
                         </div>
+                        <span asp-validation-for="Telefone" class="text-danger" id="telefone-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="Peso" for="peso" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Peso" for="id-form-field-peso" class="mb-0">
-                            </label>
-                        </div>
+                    <div class="col-sm-9">
+                        <input type="text" asp-for="Peso" class="form-control col-sm-8 col-md-6" id="peso" />
+                        <span asp-validation-for="Peso" class="text-danger" id="peso-danger"></span>
+                    </div>
+                </div>
 
-                        <div class="col-sm-9">
-                            <input type="text" asp-for="Peso" class="form-control col-sm-8 col-md-6" id="id-form-field-peso" />
-                            <span asp-validation-for="Peso" class="text-danger"></span>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="Altura" for="altura" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="Altura" for="id-form-field-altura" class="mb-0">
-                            </label>
-                        </div>
+                    <div class="col-sm-9">
+                        <input type="text" asp-for="Altura" class="form-control col-sm-8 col-md-6" id="altura" />
+                        <span asp-validation-for="Altura" class="text-danger" id="altura-danger"></span>
+                    </div>
+                </div>
 
-                        <div class="col-sm-9">
-                            <input type="text" asp-for="Altura" class="form-control col-sm-8 col-md-6" id="id-form-field-altura" />
-                            <span asp-validation-for="Altura" class="text-danger"></span>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="RedeSocial" for="redesocial" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="RedeSocial" for="id-form-field-redesocial" class="mb-0">
-                            </label>
-                        </div>
+                    <div class="col-sm-4">
+                        <input type="text" asp-for="RedeSocial" class="form-control col-sm-8 col-md-6" id="redesocial" />
+                        <span asp-validation-for="RedeSocial" class="text-danger" id="redesocial-danger"></span>
+                    </div>
+                </div>
 
-                        <div class="col-sm-4">
-                            <input type="text" asp-for="RedeSocial" class="form-control col-sm-8 col-md-6" id="id-form-field-redesocial" />
-                            <span asp-validation-for="RedeSocial" class="text-danger"></span>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                        <label asp-for="MotivoConsulta" for="motivoConsulta" class="mb-0">
+                        </label>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                            <label asp-for="MotivoConsulta" for="id-form-field-motivo" class="mb-0">
-                            </label>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <input type="text" asp-for="MotivoConsulta" class="form-control col-sm-8 col-md-6" id="id-form-field-motivo" />
-                            <span asp-validation-for="MotivoConsulta" class="text-danger"></span>
-                        </div>
+                    <div class="col-sm-9">
+                        <input type="text" asp-for="MotivoConsulta" class="form-control col-sm-8 col-md-6" id="motivoConsulta" />
+                        <span asp-validation-for="MotivoConsulta" class="text-danger" id="motivoConsulta-danger"></span>
                     </div>
+                </div>
 
-                    <div class="mt-5 border-t-1 bgc-secondary-l4 brc-secondary-l2 py-35 mx-n25">
-                        <div class="offset-md-3 col-md-9 text-nowrap">
-                            <button class="btn btn-info btn-bold px-4" type="submit">
-                                <i class="fa fa-check mr-1"></i>
-                                Enviar
-                            </button>
+                <div class="mt-5 border-t-1 bgc-secondary-l4 brc-secondary-l2 py-35 mx-n25">
+                    <div class="offset-md-3 col-md-9 text-nowrap">
+                        <button class="btn btn-info btn-bold px-4" onclick="createPaciente()">
+                            <i class="fa fa-check mr-1"></i>
+                            Enviar
+                        </button>
 
-                            <button onclick="apagarCampos" class="btn btn-outline-lightgrey btn-bgc-white btn-bold ml-2 px-4" type="reset">
-                                <i class="fa fa-undo mr-1"></i>
-                                Apagar Tudo
-                            </button>
-                        </div>
+                        <button onclick="apagarCampos" class="btn btn-outline-lightgrey btn-bgc-white btn-bold ml-2 px-4" type="reset">
+                            <i class="fa fa-undo mr-1"></i>
+                            Apagar Tudo
+                        </button>
                     </div>
-                </form>
+                </div>
             </div><!-- /.card-body -->
         </div><!-- /.card -->
     </di1v>

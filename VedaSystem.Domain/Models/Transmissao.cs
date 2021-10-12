@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace VedaSystem.Domain.Models
 {
@@ -14,7 +15,9 @@ namespace VedaSystem.Domain.Models
         public string TextoDepoisDoVideo { get; set; }
         public string Rodape { get; set; }
         public bool Ativo { get; set; }
+        public string IdsDepoimentos { get; set; }
         public Guid TerapeutaId { get; set; }
+        [JsonIgnore]
         public virtual Terapeuta Terapeuta { get; set; }
     }
 }

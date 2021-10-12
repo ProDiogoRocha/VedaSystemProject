@@ -1,0 +1,18 @@
+﻿@model VedaSystem.Application.ViewModels.CalendarioViewModel
+<div class="form-group row">
+    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+        <label asp-for="Terapeutas" for="select-materiais" class="mb-0">
+        </label>
+    </div>
+
+    <div class="col-sm-3">
+        <select id="select-materiais" asp-for="TerapeutaSelecionado" asp-items="@(new SelectList(Model.Terapeutas,"Id","NomeCompleto"))" class="form-control">
+            <option>Selecione e Adicione</option>
+        </select>
+
+        <span asp-validation-for="Terapeutas" class="text-danger"></span>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-outline-info btn-text-slide-x mb-1" onclick="OpenCalendarioDoTerapeuta(@Model.TerapeutaSelecionado.Id)">Abrir Calendario</button>
+    </div>
+</div>

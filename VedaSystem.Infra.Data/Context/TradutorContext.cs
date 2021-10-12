@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System;
 using VedaSystem.Domain.Enums;
 using VedaSystem.Domain.Models;
 using VedaSystem.Infra.Data.Mappings;
@@ -20,20 +21,26 @@ namespace VedaSystem.Infra.Data.Context
 
         public IWebDriver CreateWebDriver(Browser browser, string pathDriver)
         {
-            switch (browser)
+            try
             {
-                case Browser.Firefox:
-                    FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(pathDriver);
-                    webDriver = new FirefoxDriver(service);
+                switch (browser)
+                {
+                    case Browser.Firefox:
+                        FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(pathDriver);
+                        webDriver = new FirefoxDriver(service);
 
-                    break;
-                case Browser.Chrome:
-                    ChromeOptions options = new ChromeOptions();
-                    options.AddArguments("--headless");
-                    webDriver = new ChromeDriver(pathDriver, options);
-                    break;
+                        break;
+                    case Browser.Chrome:
+                        ChromeOptions options = new ChromeOptions();
+                        options.AddArguments("--headless");
+                        webDriver = new ChromeDriver(pathDriver, options);
+                        break;
+                }
+                return webDriver;
+            }catch(Exception e)
+            {
+                throw e;
             }
-            return webDriver;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

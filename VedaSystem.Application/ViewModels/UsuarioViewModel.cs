@@ -92,7 +92,7 @@ namespace VedaSystem.Application.ViewModels
         [Required(ErrorMessage = "O preenchimento do campo Data de Nascimento é obrigatório", AllowEmptyStrings = false)]
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         [Required(ErrorMessage = "O preenchimento do campo Endereço é obrigatório", AllowEmptyStrings = false)]
         [StringLength(80, ErrorMessage = "O endereço deve conter entre 20 e 80 caracteres", MinimumLength = 20)]
@@ -120,7 +120,7 @@ namespace VedaSystem.Application.ViewModels
 
         public string TipoUsuarioName { get; set; }
 
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        public DateTime? DataCadastro { get; set; } = DateTime.Now;
 
         public IList<SelectListItem> GetTipoUsuario()
         {
@@ -179,6 +179,28 @@ namespace VedaSystem.Application.ViewModels
                     break;
             }
             this.TipoUsuarioName = tpUsuario;
+        }
+
+        public  string RetornaPerfil()
+        {
+            string tipo = "";
+            switch (this.TipoUsuario)
+            {
+                case TipoUsuario.Admin:
+                    tipo = "Admin";
+                    break;
+                case TipoUsuario.Terapeuta:
+                    tipo = "Terapeuta";
+                    break;
+                case TipoUsuario.Paciente:
+                    tipo = "Paciente";
+                    break;
+                case TipoUsuario.FreeUser:
+                    tipo = "FreeUser";
+                    break;
+            }
+
+            return tipo;
         }
     }
 }

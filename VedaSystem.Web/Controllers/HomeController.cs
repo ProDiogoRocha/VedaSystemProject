@@ -5,8 +5,8 @@ using VedaSystem.Web.Models;
 
 namespace VedaSystem.Web.Controllers
 {
-    [Authorize(Roles ="Admin, Terapeuta")]
     [Route("[controller]/[action]")]
+    [Authorize(Roles ="Admin, Terapeuta")]
     public class HomeController : Controller
     {
         public HomeController()

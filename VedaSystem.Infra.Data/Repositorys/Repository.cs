@@ -14,8 +14,8 @@ namespace VedaSystem.Infra.Data.Repositorys
 
         public T _model;
         public IEnumerable<T> _listModel;
-
         public ILogRepository _log;
+        public string _nomeEntidade = "";
 
         public Repository(DbContext context, ILogRepository logger = null)
         {
@@ -24,14 +24,15 @@ namespace VedaSystem.Infra.Data.Repositorys
             _log = logger;
             _model = null;
             _listModel = null;
+            _nomeEntidade = this.GetType().Name;
         }
 
         public virtual void Add(T t)
         {
             _log.RegistrarLog
                 (
-                      Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Add").Name}"
-                    , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                      Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando Add"
+                    , Repositorio_Metodo: $@"{_nomeEntidade}/Add"
                     , ObjetoJson: JsonConvert.SerializeObject(t)
                 );
 
@@ -43,16 +44,16 @@ namespace VedaSystem.Infra.Data.Repositorys
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Entity {this.GetType().GetMethod("Add").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Add"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Add"
                    , ObjetoJson: JsonConvert.SerializeObject(t)
                    , Erro: e.Message
                    , Excecao: e.ToString());
             }
             _log.RegistrarLog
                 (
-                      Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Add").Name}"
-                    , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Add").Name}"
+                      Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando Add"
+                    , Repositorio_Metodo: $@"{_nomeEntidade}/{this.GetType().GetMethod("Add").Name}"
                 );
         }
 
@@ -60,8 +61,8 @@ namespace VedaSystem.Infra.Data.Repositorys
         {
             _log.RegistrarLog
                  (
-                       Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Update").Name}"
-                     , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando Update"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/Update"
                      , ObjetoJson: JsonConvert.SerializeObject(t)
                  );
 
@@ -73,16 +74,16 @@ namespace VedaSystem.Infra.Data.Repositorys
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Entity {this.GetType().GetMethod("Update").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Update"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Update"
                    , ObjetoJson: JsonConvert.SerializeObject(t)
                    , Erro: e.Message
                    , Excecao: e.ToString());
             }
             _log.RegistrarLog
                (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Update").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Update").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando Update"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Update"
                );
         }
 
@@ -90,8 +91,8 @@ namespace VedaSystem.Infra.Data.Repositorys
         {
             _log.RegistrarLog
                  (
-                       Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("Remove").Name}"
-                     , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando Remove"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/Remove"
                      , ObjetoJson: JsonConvert.SerializeObject(t)
                  );
 
@@ -103,16 +104,16 @@ namespace VedaSystem.Infra.Data.Repositorys
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Entity {this.GetType().GetMethod("Remove").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity Remove"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Remove"
                    , ObjetoJson: JsonConvert.SerializeObject(t)
                    , Erro: e.Message
                    , Excecao: e.ToString());
             }
             _log.RegistrarLog
                (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Remove").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando Remove"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/Remove"
                );
         }
 
@@ -125,8 +126,8 @@ namespace VedaSystem.Infra.Data.Repositorys
         {
             _log.RegistrarLog
                  (
-                       Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("GetAll").Name}"
-                     , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando GetAll"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/GetAll"
                  );
             try
             {
@@ -135,8 +136,8 @@ namespace VedaSystem.Infra.Data.Repositorys
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Entity {this.GetType().GetMethod("GetAll").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity GetAll"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetAll"
                    , ObjetoJson: JsonConvert.SerializeObject(_listModel)
                    , Erro: e.Message
                    , Excecao: e.ToString());
@@ -144,20 +145,20 @@ namespace VedaSystem.Infra.Data.Repositorys
 
             _log.RegistrarLog
                (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Remove").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando GetAll"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetAll"
                    , ObjetoJson: JsonConvert.SerializeObject(_listModel)
                );
 
             return _listModel;
         }
 
-        public virtual T GetById(Guid id)
+        public virtual T GetById(Guid id, bool ativo)
         {
             _log.RegistrarLog
                  (
-                       Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("GetById").Name}"
-                     , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetById").Name}"
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando GetById"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
                      , ObjetoJson: JsonConvert.SerializeObject(id)
                  );
 
@@ -168,8 +169,8 @@ namespace VedaSystem.Infra.Data.Repositorys
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Entity {this.GetType().GetMethod("GetById").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetById").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity GetById"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
                    , ObjetoJson: JsonConvert.SerializeObject(_model)
                    , Erro: e.Message
                    , Excecao: e.ToString());
@@ -177,8 +178,41 @@ namespace VedaSystem.Infra.Data.Repositorys
 
             _log.RegistrarLog
                (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("GetById").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetById").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando GetById"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
+                   , ObjetoJson: JsonConvert.SerializeObject(_model)
+               );
+
+            return _model;
+        }
+
+        public virtual T GetById(Guid id)
+        {
+            _log.RegistrarLog
+                 (
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando GetById"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
+                     , ObjetoJson: JsonConvert.SerializeObject(id)
+                 );
+
+            try
+            {
+                _model = DbSet.Find(id);
+            }
+            catch (Exception e)
+            {
+                _log.RegistrarLog(
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity GetById"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
+                   , ObjetoJson: JsonConvert.SerializeObject(_model)
+                   , Erro: e.Message
+                   , Excecao: e.ToString());
+            }
+
+            _log.RegistrarLog
+               (
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando GetById"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetById"
                    , ObjetoJson: JsonConvert.SerializeObject(_model)
                );
 
@@ -194,8 +228,8 @@ namespace VedaSystem.Infra.Data.Repositorys
         {
             _log.RegistrarLog
                  (
-                       Informacao: $@"3º Passo | {this.GetType().Name}, Iniciando {this.GetType().GetMethod("GetAll").Name}"
-                     , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
+                       Informacao: $@"3º Passo | {_nomeEntidade}, Iniciando GetByName"
+                     , Repositorio_Metodo: $@"{_nomeEntidade}/GetByName"
                  );
             try
             {
@@ -220,8 +254,8 @@ namespace VedaSystem.Infra.Data.Repositorys
             catch (Exception e)
             {
                 _log.RegistrarLog(
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Entity {this.GetType().GetMethod("GetAll").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetAll").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Entity GetByName"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetByName"
                    , ObjetoJson: JsonConvert.SerializeObject(name)
                    , Erro: e.Message
                    , Excecao: e.ToString());
@@ -229,12 +263,20 @@ namespace VedaSystem.Infra.Data.Repositorys
 
             _log.RegistrarLog
                (
-                     Informacao: $@"3º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("Remove").Name}"
-                   , Repositorio_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("Remove").Name}"
+                     Informacao: $@"3º Passo | {_nomeEntidade}, Finalizando GetByName"
+                   , Repositorio_Metodo: $@"{_nomeEntidade}/GetByName"
                    , ObjetoJson: JsonConvert.SerializeObject(_listModel)
                );
 
             return _listModel;
+        }
+        public virtual void DetachLocal(Func<T, bool> predicate)
+        {
+            var local = Db.Set<T>().Local.Where(predicate).FirstOrDefault();
+            if (local != null)
+            {
+                Db.Entry(local).State = EntityState.Detached;
+            }
         }
     }
 }

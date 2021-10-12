@@ -141,17 +141,23 @@ namespace VedaSystem.Application.Services
                     , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("GetTextoEmPortugues").Name}"
                     , ObjetoJson: JsonConvert.SerializeObject(textoIngles)
                 );
-
             var texto = "";
-            var timeSleepMilliSeconds = 0;
-            if (textoIngles.Length <= 3900)
+            try
             {
-                timeSleepMilliSeconds = textoIngles.Length > 50 ? ((textoIngles.Length * 250) / 100) : 2000;
-                Thread.Sleep(timeSleepMilliSeconds);
-                foreach (var t in _repository.GetTexts(By.ClassName("JLqJ4b"), By.TagName("span")))
+               
+                var timeSleepMilliSeconds = 0;
+                if (textoIngles.Length <= 3900)
                 {
-                    texto = texto + t.Text + " ";
+                    timeSleepMilliSeconds = textoIngles.Length > 50 ? ((textoIngles.Length * 250) / 100) : 2000;
+                    Thread.Sleep(timeSleepMilliSeconds);
+                    foreach (var t in _repository.GetTexts(By.ClassName("JLqJ4b"), By.TagName("span")))
+                    {
+                        texto = texto + t.Text + " ";
+                    }
                 }
+            }catch(Exception e)
+            {
+                throw e;
             }
 
             _log.RegistrarLog
@@ -172,9 +178,15 @@ namespace VedaSystem.Application.Services
                     , Servico_Metodo: $@"{this.GetType().Name}/{this.GetType().GetMethod("PreencherTextoEmIngles").Name}"
                     , ObjetoJson: JsonConvert.SerializeObject(texto)
                 );
-
-            _repository.SetText(By.ClassName("er8xn"), texto);
-
+            try
+            {
+                _repository.SetText(By.ClassName("QFw9Te"), By.ClassName("er8xn"), texto);
+                //_repository.SetText(By.ClassName("QFw9Te"), By.ClassName("D5aOJc"), texto);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
             _log.RegistrarLog
               (
                     Informacao: $@"2º Passo | {this.GetType().Name}, Finalizando {this.GetType().GetMethod("PreencherTextoEmIngles").Name}"

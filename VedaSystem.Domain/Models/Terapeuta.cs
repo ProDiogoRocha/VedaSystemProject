@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using VedaSystem.Domain.Enums;
 
 namespace VedaSystem.Domain.Models
@@ -33,11 +34,15 @@ namespace VedaSystem.Domain.Models
         public string Observacoes { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataNascimento { get; set; }
+        public virtual IList<FichaClinicaPaciente> FichaClinicaPacientes { get; set; }
+        public virtual IList<QuestionarioPosDiagnostico> QuestionarioPosDiagnosticos { get; set; }
         public virtual IList<Terapia> Terapias { get; set; }
         public virtual IList<TerapiaPrincipal> TerapiasPrincipais { get; set; }
         public virtual IList<Prescricao> Precricoes { get; set; } //
         public virtual IList<Paciente> Pacientes { get; set; }
         public byte[] Logo { get; set; }
+
+        [JsonIgnore]
         public virtual IList<Transmissao> Transmissoes { get; set; } //
         public virtual IList<Agenda> Agendas { get; set; } //
         public virtual IList<Horario> Horarios { get; set; } //
